@@ -3,7 +3,7 @@ services:
     container_name: mariadb
     image: mariadb
     environment:
-      #      MARIADB_ROOT_USER: example
+      MARIADB_ROOT_USER: example
       MARIADB_ROOT_PASSWORD: example
     volumes:
       - db:/data/mariadb
