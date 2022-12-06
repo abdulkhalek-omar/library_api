@@ -1,5 +1,6 @@
 package com.abdulkhalekomar.library_api.book
 
+import com.abdulkhalekomar.library_api.langauge.Language
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
@@ -11,30 +12,30 @@ import java.time.LocalDateTime
 class Book {
     @Id
     @SequenceGenerator(
-        name = "book_sequence",
-        sequenceName = "book_sequence",
+        name = "book_id_sequence",
+        sequenceName = "book_id_sequence",
         allocationSize = 1,
     )
     @GeneratedValue(
         strategy = GenerationType.SEQUENCE,
-        generator = "book_sequence",
+        generator = "book_id_sequence",
     )
     private val id = 0L
 
     @Column(name = "title", nullable = false)
-    var title: String = ""
+    private val title: String = ""
 
     @Column(name = "description")
-    var description: String? = null
+    private val description: String? = null
 
     @Column(name = "number_of_page")
-    var numberOfPage: Int? = null
+    private val numberOfPage: Int? = null
 
     @Column(name = "isbn")
-    var isbn: String? = null
+    private val isbn: String? = null
 
     @Column(name = "publish_at")
-    var publishAt: LocalDateTime? = null
+    private val publishAt: LocalDateTime? = null
 
 
     /*

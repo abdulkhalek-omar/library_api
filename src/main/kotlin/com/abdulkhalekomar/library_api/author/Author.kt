@@ -8,28 +8,28 @@ import java.time.LocalDateTime
 class Author {
     @Id
     @SequenceGenerator(
-        name = "author_sequence",
-        sequenceName = "author_sequence",
+        name = "author_id_sequence",
+        sequenceName = "author_id_sequence",
         allocationSize = 1,
     )
     @GeneratedValue(
         strategy = GenerationType.SEQUENCE,
-        generator = "author_sequence",
+        generator = "author_id_sequence",
     )
     private val id = 0L
 
     @Column(name = "first_name", nullable = false)
-    var firstName: String = ""
+    private val firstName: String = ""
 
 
     @Column(name = "last_name", nullable = false)
-    var lastName: String = ""
+    private val lastName: String = ""
 
     @Column(name = "cv")
-    var cv: String? = null
+    private val cv: String? = null
 
     @Column(name = "birth_date")
-    var birthDate: LocalDateTime? = null
+    private val birthDate: LocalDateTime? = null
 
 
 }
