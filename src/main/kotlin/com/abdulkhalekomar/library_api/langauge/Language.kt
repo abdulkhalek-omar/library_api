@@ -5,6 +5,11 @@ import jakarta.persistence.*
 @Entity(name = "Language")
 @Table(name = "Language")
 class Language {
+    constructor()
+    constructor(iso6391: String) {
+        this.iso6391 = iso6391
+    }
+
     @Id
     @SequenceGenerator(
         name = "language_id_sequence",
@@ -15,9 +20,9 @@ class Language {
         strategy = GenerationType.SEQUENCE,
         generator = "language_id_sequence",
     )
-    private val id = 0L
+    private var id = 0L
 
     @Column(name = "iso_639_1")
-    private val iso6391: String = ""
+    private var iso6391: String = ""
 
 }

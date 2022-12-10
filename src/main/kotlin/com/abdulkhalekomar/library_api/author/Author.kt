@@ -6,6 +6,15 @@ import java.time.LocalDateTime
 @Entity(name = "Author")
 @Table(name = "Author")
 class Author {
+    constructor()
+    constructor(firstName: String, lastName: String, cv: String?, birthDate: LocalDateTime?) {
+        this.firstName = firstName
+        this.lastName = lastName
+        this.cv = cv
+        this.birthDate = birthDate
+    }
+
+
     @Id
     @SequenceGenerator(
         name = "author_id_sequence",
@@ -16,20 +25,20 @@ class Author {
         strategy = GenerationType.SEQUENCE,
         generator = "author_id_sequence",
     )
-    private val id = 0L
+    private var id = 0L
 
     @Column(name = "first_name", nullable = false)
-    private val firstName: String = ""
+    private var firstName: String = ""
 
 
     @Column(name = "last_name", nullable = false)
-    private val lastName: String = ""
+    private var lastName: String = ""
 
     @Column(name = "cv")
-    private val cv: String? = null
+    private var cv: String? = null
 
     @Column(name = "birth_date")
-    private val birthDate: LocalDateTime? = null
+    private var birthDate: LocalDateTime? = null
 
 
 }
