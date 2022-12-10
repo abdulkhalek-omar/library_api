@@ -1,7 +1,9 @@
 package com.abdulkhalekomar.library_api.book
 
 import com.abdulkhalekomar.library_api.author.Author
+import com.abdulkhalekomar.library_api.category.Category
 import com.abdulkhalekomar.library_api.langauge.Language
+import com.abdulkhalekomar.library_api.publisher.Publisher
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
@@ -18,8 +20,10 @@ class Book {
         numberOfPage: Int?,
         isbn: String?,
         publishAt: LocalDateTime?,
-        language: Language?,
-        author: Author?,
+        language: Language,
+        author: Author,
+        category: Category,
+        publisher: Publisher,
     ) {
         this.title = title
         this.description = description
@@ -28,6 +32,8 @@ class Book {
         this.publishAt = publishAt
         this.language = language
         this.author = author
+        this.category = category
+        this.publisher = publisher
     }
 
     @Id
@@ -60,24 +66,29 @@ class Book {
     @ManyToOne
     @JoinColumn(
         name = "language_id",
-        nullable = false,
-        foreignKey = ForeignKey(name = "language_id_fk")
+        foreignKey = ForeignKey(name = "language_id_fk"),
     )
-    private var language: Language? = null
+    private var language: Language = Language()
 
     @ManyToOne
     @JoinColumn(
         name = "author_id",
-        nullable = false,
-        foreignKey = ForeignKey(name = "author_id_fk")
+        foreignKey = ForeignKey(name = "author_id_fk"),
     )
-    private var author: Author? = null
+    private var author: Author = Author()
 
+    @ManyToOne
+    @JoinColumn(
+        name = "category_id",
+        foreignKey = ForeignKey(name = "category_id_fk"),
+    )
+    private var category: Category = Category()
 
-    /*
-    Publisher
-    Category
-     */
-
+    @ManyToOne
+    @JoinColumn(
+        name = "publisher_id",
+        foreignKey = ForeignKey(name = "publisher_id_fk")
+    )
+    private var publisher: Publisher = Publisher()
 
 }
