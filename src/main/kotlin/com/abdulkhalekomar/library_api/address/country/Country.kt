@@ -14,7 +14,6 @@ import jakarta.persistence.*
 )
 class Country {
     constructor()
-
     constructor(countryName: String) {
         this.countryName = countryName
     }

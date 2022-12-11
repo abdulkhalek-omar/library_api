@@ -38,19 +38,34 @@ class User {
     )
     private var id = 0L
 
-    @Column(name = "first_name", nullable = false)
+    @Column(
+        name = "first_name",
+        nullable = false,
+        length = 100,
+    )
     private var firstName: String = ""
 
-    @Column(name = "last_name", nullable = false)
+    @Column(
+        name = "last_name",
+        nullable = false,
+        length = 150,
+    )
     private var lastName: String = ""
 
     @Enumerated(EnumType.STRING)
     private var userRole: UserRole = UserRole.USER
 
-    @Column(name = "email", nullable = false)
+    @Column(
+        name = "email",
+        nullable = false,
+        length = 150,
+    )
     private var email: String = ""
 
-    @Column(name = "phone")
-    private var phone: String = ""
+    @Column(
+        name = "phone",
+        length = 15,
+    )
+    private var phone: String? = null
 
 }

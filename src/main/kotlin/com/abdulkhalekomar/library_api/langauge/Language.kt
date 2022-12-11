@@ -20,9 +20,12 @@ class Language {
         strategy = GenerationType.SEQUENCE,
         generator = "language_id_sequence",
     )
-    private var id = 0L
+    private var id: Int = 0
 
-    @Column(name = "iso_639_1")
+    @Column(
+        name = "iso_639_1",
+        length = 2,
+    )
     private var iso6391: String = ""
 
 }

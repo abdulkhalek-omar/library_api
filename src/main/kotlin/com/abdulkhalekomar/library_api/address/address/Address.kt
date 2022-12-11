@@ -7,7 +7,6 @@ import jakarta.persistence.*
 @Table(name = "Address")
 class Address {
     constructor()
-
     constructor(
         street: String?,
         addressLine1: String?,

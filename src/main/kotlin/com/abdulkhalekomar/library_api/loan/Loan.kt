@@ -29,10 +29,16 @@ class Loan {
     )
     private var id = 0L
 
-    @Column(name = "loan_data", nullable = false)
+    @Column(
+        name = "loan_data",
+        nullable = false,
+    )
     private var loanData: LocalDateTime? = null
 
-    @Column(name = "return_data", nullable = false)
+    @Column(
+        name = "return_data",
+        nullable = false,
+    )
     private var returnData: LocalDateTime? = null
 
     @ManyToOne

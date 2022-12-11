@@ -25,6 +25,7 @@ class Category {
     @Column(
         name = "category_name",
         nullable = false,
+        length = 150,
     )
     private var categoryName = ""
 

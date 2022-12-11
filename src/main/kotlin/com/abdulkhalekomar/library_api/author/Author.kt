@@ -14,7 +14,6 @@ class Author {
         this.birthDate = birthDate
     }
 
-
     @Id
     @SequenceGenerator(
         name = "author_id_sequence",
@@ -27,14 +26,24 @@ class Author {
     )
     private var id = 0L
 
-    @Column(name = "first_name", nullable = false)
+    @Column(
+        name = "first_name",
+        nullable = false,
+        length = 100,
+    )
     private var firstName: String = ""
 
 
-    @Column(name = "last_name", nullable = false)
+    @Column(
+        name = "last_name",
+        nullable = false,
+        length = 150,
+    )
     private var lastName: String = ""
 
-    @Column(name = "cv")
+    @Column(
+        name = "cv",
+    )
     private var cv: String? = null
 
     @Column(name = "birth_date")

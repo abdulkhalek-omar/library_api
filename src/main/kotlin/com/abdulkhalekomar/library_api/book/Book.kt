@@ -48,19 +48,31 @@ class Book {
     )
     private var id = 0L
 
-    @Column(name = "title", nullable = false)
+    @Column(
+        name = "title",
+        nullable = false,
+        length = 200,
+    )
     private var title: String = ""
 
-    @Column(name = "description")
+    @Column(
+        name = "description",
+    )
     private var description: String? = null
 
-    @Column(name = "number_of_page")
+    @Column(
+        name = "number_of_page",
+    )
     private var numberOfPage: Int? = null
 
-    @Column(name = "isbn")
+    @Column(
+        name = "isbn",
+    )
     private var isbn: String? = null
 
-    @Column(name = "publish_at")
+    @Column(
+        name = "publish_at",
+    )
     private var publishAt: LocalDateTime? = null
 
     @ManyToOne
