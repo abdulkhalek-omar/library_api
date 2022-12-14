@@ -1,7 +1,8 @@
-package com.abdulkhalekomar.library_api.user
+package com.abdulkhalekomar.library_api.address.country
 
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface UserRepository : CrudRepository<User, Long>
+interface CountryRepository : CrudRepository<Country, Int>{
+}

@@ -11,7 +11,15 @@ import java.time.LocalDateTime
 
 
 @Entity(name = "Book")
-@Table(name = "Book")
+@Table(
+    name = "Book",
+    uniqueConstraints = [
+        UniqueConstraint(
+            name = "isbn_unique",
+            columnNames = ["isbn"],
+        )
+    ]
+)
 class Book {
     constructor()
     constructor(
@@ -67,6 +75,7 @@ class Book {
 
     @Column(
         name = "isbn",
+        length = 20,
     )
     private var isbn: String? = null
 

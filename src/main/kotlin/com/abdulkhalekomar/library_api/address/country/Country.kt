@@ -2,6 +2,7 @@ package com.abdulkhalekomar.library_api.address.country
 
 import jakarta.persistence.*
 
+// Todo: ISO 3166-1 alpha-2
 @Entity(name = "Country")
 @Table(
     name = "Country",
@@ -26,7 +27,7 @@ class Country {
     )
     @GeneratedValue(
         strategy = GenerationType.SEQUENCE,
-        generator = "country_sequence",
+        generator = "country_id_sequence",
     )
     private var id: Int = 0
 

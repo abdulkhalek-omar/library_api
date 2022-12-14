@@ -36,36 +36,41 @@ class User {
         strategy = GenerationType.SEQUENCE,
         generator = "user_id_sequence",
     )
-    private var id = 0L
+    var id = 0L
 
     @Column(
         name = "first_name",
         nullable = false,
         length = 100,
     )
-    private var firstName: String = ""
+    var firstName: String = ""
 
     @Column(
         name = "last_name",
         nullable = false,
         length = 150,
     )
-    private var lastName: String = ""
+    var lastName: String = ""
 
     @Enumerated(EnumType.STRING)
-    private var userRole: UserRole = UserRole.USER
+    @Column(
+        name = "user_role",
+        nullable = false,
+        length = 10,
+    )
+    var userRole: UserRole = UserRole.USER
 
     @Column(
         name = "email",
         nullable = false,
         length = 150,
     )
-    private var email: String = ""
+    var email: String = ""
 
     @Column(
         name = "phone",
         length = 15,
     )
-    private var phone: String? = null
+    var phone: String? = null
 
 }

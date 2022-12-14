@@ -12,13 +12,13 @@ class Publisher {
 
     @Id
     @SequenceGenerator(
-        sequenceName = "publisher_sequence",
-        name = "publisher_sequence",
+        sequenceName = "publisher_id_sequence",
+        name = "publisher_id_sequence",
         allocationSize = 1,
     )
     @GeneratedValue(
         strategy = GenerationType.SEQUENCE,
-        generator = "publisher_sequence",
+        generator = "publisher_id_sequence",
     )
     private var id = 0L
 

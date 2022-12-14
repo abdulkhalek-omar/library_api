@@ -31,7 +31,7 @@ class Address {
     )
     @GeneratedValue(
         strategy = GenerationType.SEQUENCE,
-        generator = "address_id_sequence"
+        generator = "address_id_sequence",
     )
     private var id = 0L
 
