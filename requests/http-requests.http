@@ -1,2 +1,17 @@
-###
+### findAllUsers
 GET http://localhost:8080/api/v1/users
+
+
+### findUserById
+GET http://localhost:8080/api/v1/users/1
+
+### Create User
+POST http://localhost:8080/api/v1/users
+Content-Type: application/json
+
+{
+  "first_name": "TestUserRequestF",
+  "last_name": "TestUserRequestL",
+  "email": "TestUserRequest@gmail.com",
+  "phone": "010000430000"
+}
