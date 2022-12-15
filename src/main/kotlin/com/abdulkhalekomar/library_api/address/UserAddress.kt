@@ -14,14 +14,14 @@ class UserAdminAddress : Serializable {
 
 @Embeddable
 class UserAddressId : Serializable {
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
         name = "address_id",
         foreignKey = ForeignKey(name = "address_id_user_fk")
     )
     private var address = Address()
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
         name = "user_id",
         foreignKey = ForeignKey(name = "user_id_address_fk")
