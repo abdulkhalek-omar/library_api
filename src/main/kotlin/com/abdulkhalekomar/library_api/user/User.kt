@@ -28,13 +28,13 @@ class User {
 
     @Id
     @SequenceGenerator(
-        sequenceName = "user_id_sequence",
-        name = "user_id_sequence",
+        sequenceName = "user_generator",
+        name = "user_seq",
         allocationSize = 1,
     )
     @GeneratedValue(
         strategy = GenerationType.SEQUENCE,
-        generator = "user_id_sequence",
+        generator = "user_generator",
     )
     var id: Long? = null
 
