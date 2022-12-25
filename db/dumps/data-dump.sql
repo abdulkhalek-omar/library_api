@@ -85,10 +85,10 @@ VALUES (1, 'Frankfurt', null, 'Enkenbach', '67677 ', 'Mozartstr. 9', 7);
 INSERT INTO libraryDB.address (id, address_line_1, address_line_2, city, postal_code, street, country_id)
 VALUES (2, 'Berlin', null, 'Dieter Wellhausen', 'D-11179', 'Dieter Wellhausen', 7);
 ####################################### user_address #######################################
-INSERT INTO libraryDB.user_address (user_id, address_id)
-VALUES (1, 1);
-INSERT INTO libraryDB.user_address (user_id, address_id)
-VALUES (3, 2);
+INSERT INTO libraryDB.user_address (id, user_id, address_id)
+VALUES (0, 1, 1);
+INSERT INTO libraryDB.user_address (id, user_id, address_id)
+VALUES (1, 3, 2);
 ####################################### book #######################################
 INSERT INTO libraryDB.book (id, description, isbn, number_of_page, publish_at, title, author_id, category_id,
                             language_id, publisher_id)

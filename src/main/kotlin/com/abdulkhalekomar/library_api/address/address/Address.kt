@@ -1,73 +1,75 @@
 package com.abdulkhalekomar.library_api.address.address
 
 import com.abdulkhalekomar.library_api.address.country.Country
-import jakarta.persistence.*
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.ForeignKey
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.JoinColumn
+import jakarta.persistence.ManyToOne
+import jakarta.persistence.SequenceGenerator
+import jakarta.persistence.Table
+import jakarta.persistence.Version
+import org.hibernate.annotations.DynamicUpdate
+import org.hibernate.annotations.NaturalId
+import org.hibernate.annotations.OptimisticLockType
+import org.hibernate.annotations.OptimisticLocking
+import org.hibernate.annotations.SelectBeforeUpdate
 
+
+@DynamicUpdate
+@OptimisticLocking(type = OptimisticLockType.VERSION)
+@SelectBeforeUpdate
 @Entity(name = "Address")
 @Table(name = "Address")
-class Address {
-    constructor()
-    constructor(
-        street: String?,
-        addressLine1: String?,
-        addressLine2: String?,
-        city: String?,
-        postalCode: String?,
-        country: Country,
-    ) {
-        this.street = street
-        this.addressLine1 = addressLine1
-        this.addressLine2 = addressLine2
-        this.city = city
-        this.postalCode = postalCode
-        this.country = country
-    }
-
+data class Address(
     @Id
+    @NaturalId
     @SequenceGenerator(
-        sequenceName = "address_id_sequence",
-        name = "address_id_sequence",
+        sequenceName = "address_generator",
+        name = "address_seq",
         allocationSize = 1,
     )
     @GeneratedValue(
         strategy = GenerationType.SEQUENCE,
-        generator = "address_id_sequence",
+        generator = "address_seq",
     )
-    private var id = 0L
+    var id: Long,
 
     @Column(
-        name = "street",
         length = 150,
     )
-    private var street: String? = null
+    var street: String,
 
     @Column(
         name = "address_line_1",
     )
-    private var addressLine1: String? = null
+    var addressLine1: String,
 
     @Column(
         name = "address_line_2",
     )
-    private var addressLine2: String? = null
+    var addressLine2: String,
 
     @Column(
-        name = "city",
         length = 150,
     )
-    private var city: String? = null
+    var city: String,
 
     @Column(
-        name = "postal_code",
         length = 10,
     )
-    private var postalCode: String? = null
+    var postalCode: String,
 
     @ManyToOne
     @JoinColumn(
         name = "country_id",
         foreignKey = ForeignKey(name = "country_id_fk")
     )
-    private var country: Country = Country()
+    var country: Country,
 
-}
+    @Version
+    var version: Int,
+)

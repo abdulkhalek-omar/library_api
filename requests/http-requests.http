@@ -10,10 +10,10 @@ POST http://localhost:8080/api/v1/users
 Content-Type: application/json
 
 {
-  "first_name": "TestUserRequestF",
-  "last_name": "TestUserRequestL",
-  "email": "TestUserRequest@gmail.com",
-  "phone": "010000430000"
+  "firstName": "TestUserRequestF00",
+  "lastName": "TestUserRequestL00",
+  "email": "TestUserRequest00@gmail.com",
+  "phone": "010000430111"
 }
 
 ### Update User By Id
@@ -21,8 +21,8 @@ PUT http://localhost:8080/api/v1/users/1
 Content-Type: application/json
 
 {
-  "first_name": "UpdatedF",
-  "last_name": "UpdatedL",
+  "firstName": "UpdatedF",
+  "lastName": "UpdatedL",
   "email": "Updated@gmail.com",
   "phone": "010000430011"
 }
@@ -30,3 +30,9 @@ Content-Type: application/json
 
 ### Delete User By Id
 DELETE http://localhost:8080/api/v1/users/1
+
+
+
+### Get All User Details
+GET http://localhost:8080/api/v1/user-details
+
