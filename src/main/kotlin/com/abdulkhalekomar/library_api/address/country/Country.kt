@@ -44,6 +44,7 @@ data class Country(
     var id: Int,
 
     @Column(
+        name = "country_name",
         nullable = false,
         unique = true,
         length = 150,
