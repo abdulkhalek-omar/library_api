@@ -31,7 +31,16 @@ Content-Type: application/json
 DELETE http://localhost:8080/api/v1/users/1
 
 ### Get All User Details
-GET http://localhost:8080/api/v1/user-details
+GET http://localhost:8080/api/v1/user-details/all
+
+### Get User Details By Id
+GET http://localhost:8080/api/v1/user-details/1
+
+### Get address_id by user_id
+GET http://localhost:8080/api/v1/user-details/user/2
+
+### Get user_id by address_id
+GET http://localhost:8080/api/v1/user-details/address/18
 
 ### Get All Address
 GET http://localhost:8080/api/v1/address/all
