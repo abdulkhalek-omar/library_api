@@ -73,3 +73,28 @@ Content-Type: application/json
 
 ### Delete Address by Id
 DELETE http://localhost:8080/api/v1/address/23
+
+### Get all Countries
+GET http://localhost:8080/api/v1/country/all
+
+### Get Country By Id
+GET http://localhost:8080/api/v1/country/1
+
+### Create Country
+POST http://localhost:8080/api/v1/country
+Content-Type: application/json
+
+{
+  "countryName": "Canade"
+}
+
+### Update Country by Id
+PUT http://localhost:8080/api/v1/country/8
+Content-Type: application/json
+
+{
+  "countryName": "Canada"
+}
+
+### Delete Country by Id
+DELETE http://localhost:8080/api/v1/country/8

@@ -1,13 +1,12 @@
 package com.abdulkhalekomar.library_api.address.address
 
 import org.springframework.stereotype.Service
-import java.util.Optional
 
 @Service
 class AddressService(private var iAddressRepository: IAddressRepository) {
     fun findAllAddresses(): Iterable<Address> = iAddressRepository.findAll()
     fun findAddressById(addressId: Long) = iAddressRepository.findById(addressId)
-    fun save(requestAddress: Address): String {
+    fun createAddress(requestAddress: Address): String {
         return try {
             iAddressRepository.save(requestAddress)
             "Address is successfully created"

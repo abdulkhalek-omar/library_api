@@ -19,7 +19,7 @@ class AddressController(private val addressService: AddressService) {
     fun findAddressById(@PathVariable addressId: Long) = addressService.findAddressById(addressId)
 
     @PostMapping
-    fun saveAddress(@RequestBody requestAddress: Address) = addressService.save(requestAddress)
+    fun createAddress(@RequestBody requestAddress: Address) = addressService.createAddress(requestAddress)
 
     @PutMapping("/{addressId}")
     fun updateAddress(@PathVariable addressId: Long, @RequestBody requestAddress: Address) =
