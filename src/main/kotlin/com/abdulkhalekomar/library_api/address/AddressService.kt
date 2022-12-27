@@ -1,4 +1,4 @@
-package com.abdulkhalekomar.library_api.address.address
+package com.abdulkhalekomar.library_api.address
 
 import org.springframework.stereotype.Service
 

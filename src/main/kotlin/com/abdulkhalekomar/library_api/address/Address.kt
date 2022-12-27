@@ -1,6 +1,6 @@
-package com.abdulkhalekomar.library_api.address.address
+package com.abdulkhalekomar.library_api.address
 
-import com.abdulkhalekomar.library_api.address.country.Country
+import com.abdulkhalekomar.library_api.country.Country
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.ForeignKey

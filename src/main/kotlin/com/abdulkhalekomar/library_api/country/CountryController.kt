@@ -1,4 +1,4 @@
-package com.abdulkhalekomar.library_api.address.country
+package com.abdulkhalekomar.library_api.country
 
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping

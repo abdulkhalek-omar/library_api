@@ -1,4 +1,4 @@
-package com.abdulkhalekomar.library_api.address.country
+package com.abdulkhalekomar.library_api.country
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
