@@ -13,7 +13,6 @@ import jakarta.persistence.SequenceGenerator
 import jakarta.persistence.Table
 import jakarta.persistence.Version
 import org.hibernate.annotations.DynamicUpdate
-import org.hibernate.annotations.NaturalId
 import org.hibernate.annotations.OptimisticLockType
 import org.hibernate.annotations.OptimisticLocking
 import org.hibernate.annotations.SelectBeforeUpdate
@@ -26,7 +25,6 @@ import org.hibernate.annotations.SelectBeforeUpdate
 @Table(name = "Address")
 data class Address(
     @Id
-    @NaturalId
     @SequenceGenerator(
         sequenceName = "address_generator",
         name = "address_seq",
@@ -41,35 +39,35 @@ data class Address(
     @Column(
         length = 150,
     )
-    var street: String,
+    var street: String? = null,
 
     @Column(
         name = "address_line_1",
     )
-    var addressLine1: String,
+    var addressLine1: String? = null,
 
     @Column(
         name = "address_line_2",
     )
-    var addressLine2: String,
+    var addressLine2: String? = null,
 
     @Column(
         length = 150,
     )
-    var city: String,
+    var city: String? = null,
 
     @Column(
         length = 10,
     )
-    var postalCode: String,
+    var postalCode: String? = null,
 
     @ManyToOne
     @JoinColumn(
         name = "country_id",
         foreignKey = ForeignKey(name = "country_id_fk")
     )
-    var country: Country,
+    var country: Country? = null,
 
     @Version
-    var version: Int,
+    var version: Int? = null,
 )

@@ -1,18 +1,22 @@
 package com.abdulkhalekomar.library_api.user
 
+import com.abdulkhalekomar.library_api.address.Address
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
+import jakarta.persistence.FetchType
+import jakarta.persistence.ForeignKey
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.JoinColumn
+import jakarta.persistence.ManyToOne
 import jakarta.persistence.SequenceGenerator
 import jakarta.persistence.Table
 import jakarta.persistence.UniqueConstraint
 import jakarta.persistence.Version
 import org.hibernate.annotations.DynamicUpdate
-import org.hibernate.annotations.NaturalId
 import org.hibernate.annotations.OptimisticLockType
 import org.hibernate.annotations.OptimisticLocking
 import org.hibernate.annotations.SelectBeforeUpdate
@@ -35,7 +39,6 @@ import org.hibernate.annotations.SelectBeforeUpdate
 )
 data class User(
     @Id
-    @NaturalId
     @SequenceGenerator(
         sequenceName = "user_generator",
         name = "user_seq",
@@ -51,13 +54,13 @@ data class User(
         nullable = false,
         length = 100,
     )
-    var firstName: String,
+    var firstName: String? = null,
 
     @Column(
         nullable = false,
         length = 150,
     )
-    var lastName: String,
+    var lastName: String? = null,
 
     @Enumerated(EnumType.STRING)
     @Column(
@@ -70,12 +73,19 @@ data class User(
         nullable = false,
         length = 150,
     )
-    var email: String,
+    var email: String? = null,
 
     @Column(
         length = 15,
     )
-    var phone: String,
+    var phone: String? = null,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+        name = "address_id",
+        foreignKey = ForeignKey(name = "address_id_fk")
+    )
+    var address: Address? = null,
 
     @Version
     var version: Int,

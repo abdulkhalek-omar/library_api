@@ -1,20 +1,24 @@
 package com.abdulkhalekomar.library_api.user
 
+import com.abdulkhalekomar.library_api.address.IAddressRepository
 import org.springframework.stereotype.Service
 
 @Service
-class UserService(private val iUserRepository: IUserRepository) {
+class UserService(private val iUserRepository: IUserRepository, private val iAddressRepository: IAddressRepository) {
     fun findAllUsers(): Iterable<User> = iUserRepository.findAll()
     fun findUserById(id: Long): User? {
         return iUserRepository.findById(id).orElse(null)
     }
 
-    fun save(requestUser: User): String {
-        val savedUser = iUserRepository.save(requestUser)
-        if (savedUser.id != null) {
-            return "User successfully created"
+    fun createUser(requestUser: User): String {
+        return try {
+            val address = iAddressRepository.findById(requestUser.address!!.id).get()
+            requestUser.address = address
+            iUserRepository.save(requestUser)
+            "User successfully created"
+        } catch (e: Exception) {
+            "Failed to created User"
         }
-        return "Failed to created User"
     }
 
     fun updateUserById(id: Long, requestUser: User): String {

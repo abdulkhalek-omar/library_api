@@ -21,7 +21,7 @@ class UserController(private val userService: UserService) {
     fun findUserById(@PathVariable userId: Long): User? = userService.findUserById(userId)
 
     @PostMapping
-    fun createUser(@RequestBody requestUser: User) = userService.save(requestUser)
+    fun createUser(@RequestBody requestUser: User) = userService.createUser(requestUser)
 
     @PutMapping("/{userId}")
     fun updateUser(@PathVariable userId: Long, @RequestBody requestUser: User) =
