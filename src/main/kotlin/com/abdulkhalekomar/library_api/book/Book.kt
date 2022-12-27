@@ -4,7 +4,17 @@ import com.abdulkhalekomar.library_api.author.Author
 import com.abdulkhalekomar.library_api.category.Category
 import com.abdulkhalekomar.library_api.langauge.Language
 import com.abdulkhalekomar.library_api.publisher.Publisher
-import jakarta.persistence.*
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.ForeignKey
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.JoinColumn
+import jakarta.persistence.ManyToOne
+import jakarta.persistence.SequenceGenerator
+import jakarta.persistence.Table
+import jakarta.persistence.UniqueConstraint
 import java.time.LocalDateTime
 
 // import kotlinx.datetime.LocalDateTime
@@ -96,7 +106,7 @@ class Book {
         name = "author_id",
         foreignKey = ForeignKey(name = "author_id_fk"),
     )
-    private var author: Author = Author()
+    private var author: Author? = null
 
     @ManyToOne
     @JoinColumn(

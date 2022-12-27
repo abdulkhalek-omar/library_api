@@ -8,17 +8,8 @@ import jakarta.persistence.Id
 import jakarta.persistence.SequenceGenerator
 import jakarta.persistence.Table
 import jakarta.persistence.UniqueConstraint
-import jakarta.persistence.Version
-import org.hibernate.annotations.DynamicUpdate
-import org.hibernate.annotations.NaturalId
-import org.hibernate.annotations.OptimisticLockType
-import org.hibernate.annotations.OptimisticLocking
-import org.hibernate.annotations.SelectBeforeUpdate
 
 // Todo: ISO 3166-1 alpha-2
-@DynamicUpdate
-@OptimisticLocking(type = OptimisticLockType.VERSION)
-@SelectBeforeUpdate
 @Entity(name = "Country")
 @Table(
     name = "Country",
@@ -31,7 +22,6 @@ import org.hibernate.annotations.SelectBeforeUpdate
 )
 data class Country(
     @Id
-    @NaturalId
     @SequenceGenerator(
         sequenceName = "country_generator",
         name = "country_seq",
@@ -49,8 +39,5 @@ data class Country(
         unique = true,
         length = 150,
     )
-    var countryName: String,
-
-    @Version
-    var version: Int,
+    var countryName: String? = null,
 )

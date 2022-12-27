@@ -9,20 +9,20 @@ VALUES (1, 'Amazon');
 INSERT INTO libraryDB.publisher (id, publisher_name)
 VALUES (2, 'Springer Verlag');
 ####################################### country #######################################
-INSERT INTO libraryDB.country (id, country_name, version)
-VALUES (1, 'Afghanistan', 0);
-INSERT INTO libraryDB.country (id, country_name, version)
-VALUES (2, 'Albanie', 0);
-INSERT INTO libraryDB.country (id, country_name, version)
-VALUES (3, 'Allegri', 0);
-INSERT INTO libraryDB.country (id, country_name, version)
-VALUES (5, 'Andorra', 0);
-INSERT INTO libraryDB.country (id, country_name, version)
-VALUES (6, 'Angola', 0);
-INSERT INTO libraryDB.country (id, country_name, version)
-VALUES (7, 'Germany', 0);
-INSERT INTO libraryDB.country (id, country_name, version)
-VALUES (4, 'Samoa Americanises', 0);
+INSERT INTO libraryDB.country (id, country_name)
+VALUES (1, 'Afghanistan');
+INSERT INTO libraryDB.country (id, country_name)
+VALUES (2, 'Albanie');
+INSERT INTO libraryDB.country (id, country_name)
+VALUES (3, 'Allegri');
+INSERT INTO libraryDB.country (id, country_name)
+VALUES (5, 'Andorra');
+INSERT INTO libraryDB.country (id, country_name)
+VALUES (6, 'Angola');
+INSERT INTO libraryDB.country (id, country_name)
+VALUES (7, 'Germany');
+INSERT INTO libraryDB.country (id, country_name)
+VALUES (4, 'Samoa Americanises');
 ####################################### category #######################################
 INSERT INTO libraryDB.category (id, category_name)
 VALUES (1, 'Krimis');
@@ -73,17 +73,17 @@ INSERT INTO libraryDB.author (id, birth_date, cv, first_name, last_name)
 VALUES (2, '1877-07-02 17:07:20.000000', 'war ein deutsch-schweizerischer Schriftsteller',
         'Dichter und Maler. Bekanntheit erlangte er mit Prosawerken wie Siddhartha', ' Der Steppenwolf');
 ####################################### user #######################################
-INSERT INTO libraryDB.user (id, email, first_name, last_name, phone, user_role, version)
-VALUES (1, 'user@example.com', 'fUser', 'Luser', '092145446820', 'USER', 0);
-INSERT INTO libraryDB.user (id, email, first_name, last_name, phone, user_role, version)
-VALUES (2, 'user2@example.com', 'fUser', 'Luser2', '092145446822', 'USER', 0);
-INSERT INTO libraryDB.user (id, email, first_name, last_name, phone, user_role, version)
-VALUES (3, 'admin@example.com', 'f_admin', 'l_admin', '092145446000', 'ADMIN', 0);
+INSERT INTO libraryDB.user (id, email, first_name, last_name, phone, user_role)
+VALUES (1, 'user@example.com', 'fUser', 'Luser', '092145446820', 'USER');
+INSERT INTO libraryDB.user (id, email, first_name, last_name, phone, user_role)
+VALUES (2, 'user2@example.com', 'fUser', 'Luser2', '092145446822', 'USER');
+INSERT INTO libraryDB.user (id, email, first_name, last_name, phone, user_role)
+VALUES (3, 'admin@example.com', 'f_admin', 'l_admin', '092145446000', 'ADMIN');
 ####################################### address #######################################
-INSERT INTO libraryDB.address (id, address_line_1, address_line_2, city, postal_code, street, country_id, version)
-VALUES (1, 'Frankfurt', null, 'Enkenbach', '67677 ', 'Mozartstr. 9', 7, 0);
-INSERT INTO libraryDB.address (id, address_line_1, address_line_2, city, postal_code, street, country_id, version)
-VALUES (2, 'Berlin', null, 'Dieter Wellhausen', 'D-11179', 'Dieter Wellhausen', 7, 0);
+INSERT INTO libraryDB.address (id, address_line_1, address_line_2, city, postal_code, street, country_id)
+VALUES (1, 'Frankfurt', null, 'Enkenbach', '67677 ', 'Mozartstr. 9', 7);
+INSERT INTO libraryDB.address (id, address_line_1, address_line_2, city, postal_code, street, country_id)
+VALUES (2, 'Berlin', null, 'Dieter Wellhausen', 'D-11179', 'Dieter Wellhausen', 7);
 # ####################################### user_address #######################################
 # INSERT INTO libraryDB.user_address (id, user_id, address_id)
 # VALUES (0, 1, 1);

@@ -15,16 +15,7 @@ import jakarta.persistence.ManyToOne
 import jakarta.persistence.SequenceGenerator
 import jakarta.persistence.Table
 import jakarta.persistence.UniqueConstraint
-import jakarta.persistence.Version
-import org.hibernate.annotations.DynamicUpdate
-import org.hibernate.annotations.OptimisticLockType
-import org.hibernate.annotations.OptimisticLocking
-import org.hibernate.annotations.SelectBeforeUpdate
 
-
-@DynamicUpdate
-@OptimisticLocking(type = OptimisticLockType.VERSION)
-@SelectBeforeUpdate
 @Entity(name = "User")
 @Table(
     name = "User",
@@ -86,7 +77,4 @@ data class User(
         foreignKey = ForeignKey(name = "address_id_fk")
     )
     var address: Address? = null,
-
-    @Version
-    var version: Int,
 )

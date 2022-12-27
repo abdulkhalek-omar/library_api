@@ -1,19 +1,21 @@
 package com.abdulkhalekomar.library_api.author
 
-import jakarta.persistence.*
+import com.abdulkhalekomar.library_api.address.Address
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.ForeignKey
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.JoinColumn
+import jakarta.persistence.ManyToOne
+import jakarta.persistence.SequenceGenerator
+import jakarta.persistence.Table
 import java.time.LocalDateTime
 
 @Entity(name = "Author")
 @Table(name = "Author")
-class Author {
-    constructor()
-    constructor(firstName: String, lastName: String, cv: String?, birthDate: LocalDateTime?) {
-        this.firstName = firstName
-        this.lastName = lastName
-        this.cv = cv
-        this.birthDate = birthDate
-    }
-
+data class Author(
     @Id
     @SequenceGenerator(
         name = "author_id_sequence",
@@ -24,14 +26,14 @@ class Author {
         strategy = GenerationType.SEQUENCE,
         generator = "author_id_sequence",
     )
-    private var id = 0L
+    var id: Long,
 
     @Column(
         name = "first_name",
         nullable = false,
         length = 100,
     )
-    private var firstName: String = ""
+    var firstName: String? = null,
 
 
     @Column(
@@ -39,15 +41,20 @@ class Author {
         nullable = false,
         length = 150,
     )
-    private var lastName: String = ""
+    var lastName: String? = null,
 
     @Column(
         name = "cv",
     )
-    private var cv: String? = null
+    var cv: String? = null,
 
     @Column(name = "birth_date")
-    private var birthDate: LocalDateTime? = null
+    var birthDate: LocalDateTime? = null,
 
-
-}
+    @ManyToOne
+    @JoinColumn(
+        name = "address_id",
+        foreignKey = ForeignKey(name = "address_id_author_fk")
+    )
+    var address: Address? = null,
+)
