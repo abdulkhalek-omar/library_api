@@ -1,15 +1,16 @@
 package com.abdulkhalekomar.library_api.langauge
 
-import jakarta.persistence.*
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.SequenceGenerator
+import jakarta.persistence.Table
 
 @Entity(name = "Language")
 @Table(name = "Language")
-class Language {
-    constructor()
-    constructor(iso6391: String) {
-        this.iso6391 = iso6391
-    }
-
+data class Language(
     @Id
     @SequenceGenerator(
         name = "language_id_sequence",
@@ -20,12 +21,12 @@ class Language {
         strategy = GenerationType.SEQUENCE,
         generator = "language_id_sequence",
     )
-    private var id: Int = 0
+    var id: Int,
 
     @Column(
         name = "iso_639_1",
+        nullable = false,
         length = 2,
     )
-    private var iso6391: String = ""
-
-}
+    var iso6391: String = "",
+)

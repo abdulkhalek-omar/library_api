@@ -1,6 +1,13 @@
 package com.abdulkhalekomar.library_api.category
 
-import jakarta.persistence.*
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.SequenceGenerator
+import jakarta.persistence.Table
+import jakarta.persistence.UniqueConstraint
 
 @Entity(name = "Category")
 @Table(
@@ -12,12 +19,7 @@ import jakarta.persistence.*
         ),
     ],
 )
-class Category {
-    constructor()
-    constructor(categoryName: String) {
-        this.categoryName = categoryName
-    }
-
+data class Category(
     @Id
     @SequenceGenerator(
         sequenceName = "category_id_sequence",
@@ -28,7 +30,7 @@ class Category {
         strategy = GenerationType.SEQUENCE,
         generator = "category_id_sequence",
     )
-    private var id = 0L
+    var id: Long,
 
     @Column(
         name = "category_name",
@@ -36,6 +38,5 @@ class Category {
         unique = true,
         length = 150,
     )
-    private var categoryName = ""
-
-}
+    var categoryName: String = "",
+)

@@ -18,8 +18,6 @@ import jakarta.persistence.UniqueConstraint
 import java.time.LocalDateTime
 
 // import kotlinx.datetime.LocalDateTime
-
-
 @Entity(name = "Book")
 @Table(
     name = "Book",
@@ -30,30 +28,7 @@ import java.time.LocalDateTime
         )
     ]
 )
-class Book {
-    constructor()
-    constructor(
-        title: String,
-        description: String?,
-        numberOfPage: Int?,
-        isbn: String?,
-        publishAt: LocalDateTime?,
-        language: Language,
-        author: Author,
-        category: Category,
-        publisher: Publisher,
-    ) {
-        this.title = title
-        this.description = description
-        this.numberOfPage = numberOfPage
-        this.isbn = isbn
-        this.publishAt = publishAt
-        this.language = language
-        this.author = author
-        this.category = category
-        this.publisher = publisher
-    }
-
+data class Book(
     @Id
     @SequenceGenerator(
         name = "book_id_sequence",
@@ -64,62 +39,61 @@ class Book {
         strategy = GenerationType.SEQUENCE,
         generator = "book_id_sequence",
     )
-    private var id = 0L
+    var id: Long,
 
     @Column(
         name = "title",
         nullable = false,
         length = 200,
     )
-    private var title: String = ""
+    var title: String? = null,
 
     @Column(
         name = "description",
     )
-    private var description: String? = null
+    var description: String? = null,
 
     @Column(
         name = "number_of_page",
     )
-    private var numberOfPage: Int? = null
+    var numberOfPage: Int? = null,
 
     @Column(
         name = "isbn",
         length = 20,
     )
-    private var isbn: String? = null
+    var isbn: String? = null,
 
     @Column(
         name = "publish_at",
     )
-    private var publishAt: LocalDateTime? = null
+    var publishAt: LocalDateTime? = null,
 
     @ManyToOne
     @JoinColumn(
         name = "language_id",
         foreignKey = ForeignKey(name = "language_id_fk"),
     )
-    private var language: Language = Language()
+    var language: Language? = null,
 
     @ManyToOne
     @JoinColumn(
         name = "author_id",
         foreignKey = ForeignKey(name = "author_id_fk"),
     )
-    private var author: Author? = null
+    var author: Author? = null,
 
     @ManyToOne
     @JoinColumn(
         name = "category_id",
         foreignKey = ForeignKey(name = "category_id_fk"),
     )
-    private var category: Category = Category()
+    var category: Category? = null,
 
     @ManyToOne
     @JoinColumn(
         name = "publisher_id",
         foreignKey = ForeignKey(name = "publisher_id_fk")
     )
-    private var publisher: Publisher = Publisher()
-
-}
+    var publisher: Publisher? = null,
+)

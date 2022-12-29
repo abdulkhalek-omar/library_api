@@ -1,15 +1,16 @@
 package com.abdulkhalekomar.library_api.publisher
 
-import jakarta.persistence.*
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import jakarta.persistence.SequenceGenerator
+import jakarta.persistence.Table
 
 @Entity(name = "Publisher")
 @Table(name = "Publisher")
-class Publisher {
-    constructor()
-    constructor(publisherName: String) {
-        this.publisherName = publisherName
-    }
-
+data class Publisher(
     @Id
     @SequenceGenerator(
         sequenceName = "publisher_id_sequence",
@@ -20,11 +21,11 @@ class Publisher {
         strategy = GenerationType.SEQUENCE,
         generator = "publisher_id_sequence",
     )
-    private var id = 0L
+    var id: Long,
 
     @Column(
         name = "publisher_name",
         nullable = false,
     )
-    private var publisherName = ""
-}
+    var publisherName: String = "",
+)
