@@ -50,5 +50,11 @@ class BookService(private val iBookRepository: IBookRepository) {
         return "Failed to update book information"
     }
 
-    fun deleteBook(bookId: Long) = iBookRepository.deleteById(bookId)
+    fun deleteBook(bookId: Long): String {
+        iBookRepository.deleteById(bookId)
+        if (!iBookRepository.existsById(bookId)) {
+            return "Book is successfully deleted"
+        }
+        return "Failed to delete Book"
+    }
 }

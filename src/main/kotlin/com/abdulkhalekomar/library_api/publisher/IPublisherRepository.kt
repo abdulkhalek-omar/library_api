@@ -1,7 +1,7 @@
-package com.abdulkhalekomar.library_api.category
+package com.abdulkhalekomar.library_api.publisher
 
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface CategoryRepository : CrudRepository<Category, Long>
+interface IPublisherRepository : CrudRepository<Publisher, Long>

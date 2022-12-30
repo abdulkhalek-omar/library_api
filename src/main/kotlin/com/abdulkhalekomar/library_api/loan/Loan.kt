@@ -1,18 +1,18 @@
 package com.abdulkhalekomar.library_api.loan
 
+import com.abdulkhalekomar.library_api.book.Book
+import com.abdulkhalekomar.library_api.user.User
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
+import jakarta.persistence.ForeignKey
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.JoinColumn
+import jakarta.persistence.ManyToOne
 import jakarta.persistence.SequenceGenerator
 import jakarta.persistence.Table
 import jakarta.persistence.UniqueConstraint
-import com.abdulkhalekomar.library_api.book.Book
-import com.abdulkhalekomar.library_api.user.User
-import jakarta.persistence.ForeignKey
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.ManyToOne
 import java.time.LocalDateTime
 
 @Entity(name = "Loan")
@@ -25,7 +25,7 @@ import java.time.LocalDateTime
         )
     ]
 )
-class Loan {
+data class Loan(
     @Id
     @SequenceGenerator(
         name = "loan_id_sequence",
@@ -36,33 +36,31 @@ class Loan {
         strategy = GenerationType.SEQUENCE,
         generator = "loan_id_sequence",
     )
-    private var id = 0L
+    var id: Long,
 
     @Column(
         name = "loan_data",
         nullable = false,
     )
-    private var loanData: LocalDateTime? = null
+    var loanData: LocalDateTime? = null,
 
     @Column(
         name = "return_data",
         nullable = false,
     )
-    private var returnData: LocalDateTime? = null
+    var returnData: LocalDateTime? = null,
 
     @ManyToOne
     @JoinColumn(
         name = "user_id",
         foreignKey = ForeignKey(name = "user_id_fk")
     )
-    private var user: User? = null
+    var user: User? = null,
 
     @ManyToOne
     @JoinColumn(
         name = "book_id",
         foreignKey = ForeignKey(name = "book_id_fk")
     )
-    private var book = Book()
-
-
-}
+    var book: Book? = null,
+)

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/book")
 class BookController(private val bookService: BookService) {
     @GetMapping("/all")
     fun findAllBooks() = bookService.findAllBooks()

@@ -96,3 +96,216 @@ Content-Type: application/json
 
 ### Delete Country by Id
 DELETE http://localhost:8080/api/v1/country/8
+
+
+
+### Find all Books
+GET http://localhost:8080/api/v1/book/all
+
+### Find Book By Id
+GET http://localhost:8080/api/v1/book/1
+
+### Create Book
+POST http://localhost:8080/api/v1/book
+Content-Type: application/json
+
+{
+  "title": "Title12",
+  "description": "As you grow older, you will discover that you have two hands, one for helping yourself, the other for helping others.",
+  "numberOfPage": 200,
+  "isbn": "1234-1111-1230",
+  "publishAt": "2022-12-12T17:24:44",
+  "language": {
+    "id": 1
+  },
+  "author": {
+    "id": 1
+  },
+  "category": {
+    "id": 1
+  },
+  "publisher": {
+    "id": 1
+  }
+}
+
+### Update Book by Id
+PUT http://localhost:8080/api/v1/book/3
+Content-Type: application/json
+
+{
+  "title": "Title00",
+  "description": "As you grow older, you will discover that you have two hands, one for helping yourself, the other for helping others.",
+  "numberOfPage": 200,
+  "isbn": "1234-1110-1230",
+  "publishAt": "2022-12-12T17:24:44",
+  "language": {
+    "id": 1
+  },
+  "author": {
+    "id": 1
+  },
+  "category": {
+    "id": 1
+  },
+  "publisher": {
+    "id": 1
+  }
+}
+
+### Delete Book by Id
+DELETE http://localhost:8080/api/v1/book/3
+
+### Find all Authors
+GET http://localhost:8080/api/v1/author/all
+
+### Find Author by id
+GET http://localhost:8080/api/v1/author/1
+
+### Create Author
+POST http://localhost:8080/api/v1/author
+Content-Type: application/json
+
+{
+  "firstName": "Ferdinand Benedikt",
+  "lastName": "von Schirach",
+  "cv": "Ferdinand Benedikt von Schirach ist ein deutscher Schriftsteller und Jurist. Bekannt wurde er auch als Strafverteidiger in den Mauerschützenprozessen.",
+  "birthDate": "1964-03-12T17:05:09",
+  "address": {
+    "id": 1
+  }
+}
+
+### Update Author by id
+PUT http://localhost:8080/api/v1/author/3
+Content-Type: application/json
+
+{
+  "firstName": "Ferdinand Benedikt 0",
+  "lastName": "von Schirach 0",
+  "cv": "00 Ferdinand Benedikt von Schirach ist ein deutscher Schriftsteller und Jurist. Bekannt wurde er auch als Strafverteidiger in den Mauerschützenprozessen.",
+  "birthDate": "0000-03-12T17:05:09",
+  "address": {
+    "id": 1
+  }
+}
+
+### Delete Author by Id
+DELETE http://localhost:8080/api/v1/author/3
+
+### Find all Categories
+GET http://localhost:8080/api/v1/category/all
+
+### Find Category by id
+GET http://localhost:8080/api/v1/category/1
+
+### Create Category
+POST http://localhost:8080/api/v1/category
+Content-Type: application/json
+
+{
+  "categoryName": "Test-Cat"
+}
+
+### Update Category by Id
+PUT http://localhost:8080/api/v1/category/8
+Content-Type: application/json
+
+{
+  "categoryName": "Test-Cat-updated"
+}
+
+### Delete Category by Id
+DELETE http://localhost:8080/api/v1/category/8
+
+### Find all Languages
+GET http://localhost:8080/api/v1/language/all
+
+### Find Language by Ud
+GET http://localhost:8080/api/v1/language/1
+
+### Create Language
+POST http://localhost:8080/api/v1/language
+Content-Type: application/json
+
+{
+  "iso6391": "te"
+}
+
+### Update Language by Id
+PUT http://localhost:8080/api/v1/language/3
+Content-Type: application/json
+
+{
+  "iso6391": "up"
+}
+
+### Delete Language by Id
+DELETE http://localhost:8080/api/v1/language/3
+
+### Find All Loans
+GET http://localhost:8080/api/v1/loan/all
+
+### Find Loan by Id
+GET http://localhost:8080/api/v1/loan/1
+
+### Create Loan
+POST http://localhost:8080/api/v1/loan
+Content-Type: application/json
+
+{
+  "loanData": "2022-12-12T17:00:00",
+  "returnData": "2022-12-15T17:00:00",
+  "user": {
+    "id": 1
+  },
+  "book": {
+    "id": 2
+  }
+}
+
+### Update Loan by Id
+PUT http://localhost:8080/api/v1/loan/5
+Content-Type: application/json
+
+{
+  "loanData": "2022-12-12T17:00:00",
+  "returnData": "2022-12-15T17:00:00",
+  "user": {
+    "id": 1
+  },
+  "book": {
+    "id": 2
+  }
+}
+
+### Delete Loan by Id
+DELETE http://localhost:8080/api/v1/loan/5
+
+
+### Find all Publishers
+GET http://localhost:8080/api/v1/publisher/all
+
+### Find Publisher By Id
+GET http://localhost:8080/api/v1/publisher/1
+
+### Create Publisher
+POST http://localhost:8080/api/v1/publisher
+Content-Type: application/json
+
+{
+  "publisherName": "Publisher Test"
+}
+
+
+### Update Publisher by Id
+PUT http://localhost:8080/api/v1/publisher/3
+Content-Type: application/json
+
+{
+  "publisherName": "Publisher Test Updated"
+}
+
+
+### Delete Publisher by ID
+DELETE http://localhost:8080/api/v1/publisher/3
