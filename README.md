@@ -11,4 +11,6 @@
 | Spring Web          | 
 | Spring Data JPA     |
 
-
+| Project Requirements | 
+|---------------------|
+| Java 17             |
