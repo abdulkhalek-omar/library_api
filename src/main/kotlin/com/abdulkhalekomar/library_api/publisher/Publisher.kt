@@ -7,25 +7,23 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.SequenceGenerator
 import jakarta.persistence.Table
+import jakarta.validation.constraints.Max
+import jakarta.validation.constraints.NotBlank
 
 @Entity(name = "Publisher")
 @Table(name = "Publisher")
 data class Publisher(
-    @Id
-    @SequenceGenerator(
+    @Id @SequenceGenerator(
         sequenceName = "publisher_id_sequence",
         name = "publisher_id_sequence",
         allocationSize = 1,
-    )
-    @GeneratedValue(
+    ) @GeneratedValue(
         strategy = GenerationType.SEQUENCE,
         generator = "publisher_id_sequence",
-    )
-    var id: Long,
+    ) var id: Long,
 
     @Column(
         name = "publisher_name",
         nullable = false,
-    )
-    var publisherName: String = "",
+    ) @NotBlank @Max(value = 255) var publisherName: String = "",
 )

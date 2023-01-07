@@ -25,6 +25,7 @@ dependencies {
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
+    implementation("org.hibernate:hibernate-validator:8.0.0.Final")
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
 }
 

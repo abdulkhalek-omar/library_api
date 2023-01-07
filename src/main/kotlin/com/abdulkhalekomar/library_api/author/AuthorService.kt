@@ -11,7 +11,7 @@ class AuthorService(private val iAuthorRepository: IAuthorRepository) {
 
     fun createAuthor(authorRequest: Author): String {
         return try {
-            val address = Address(id = authorRequest.address!!.id)
+            val address = Address(id = authorRequest.address!!.id, "")
             authorRequest.address = address
             iAuthorRepository.save(authorRequest)
             "Author created successfully"

@@ -1,6 +1,7 @@
 package com.abdulkhalekomar.library_api.user
 
 import com.abdulkhalekomar.library_api.address.Address
+import com.abdulkhalekomar.library_api.validation_helpers.annotations.Numeric
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
@@ -15,6 +16,10 @@ import jakarta.persistence.ManyToOne
 import jakarta.persistence.SequenceGenerator
 import jakarta.persistence.Table
 import jakarta.persistence.UniqueConstraint
+import jakarta.validation.constraints.Email
+import jakarta.validation.constraints.Max
+import jakarta.validation.constraints.NotBlank
+import jakarta.validation.constraints.Size
 
 @Entity(name = "User")
 @Table(
@@ -29,52 +34,41 @@ import jakarta.persistence.UniqueConstraint
     ],
 )
 data class User(
-    @Id
-    @SequenceGenerator(
+    @Id @SequenceGenerator(
         sequenceName = "user_generator",
         name = "user_seq",
         allocationSize = 1,
-    )
-    @GeneratedValue(
+    ) @GeneratedValue(
         strategy = GenerationType.SEQUENCE,
         generator = "user_generator",
-    )
-    var id: Long,
+    ) var id: Long,
 
     @Column(
         nullable = false,
         length = 100,
-    )
-    var firstName: String? = null,
+    ) @NotBlank @Size(min = 2, max = 100) var firstName: String = "",
 
     @Column(
         nullable = false,
         length = 150,
-    )
-    var lastName: String? = null,
+    ) @NotBlank @Size(min = 2, max = 150) var lastName: String = "",
 
-    @Enumerated(EnumType.STRING)
-    @Column(
+    @Enumerated(EnumType.STRING) @Column(
         nullable = false,
         length = 10,
-    )
-    var userRole: UserRole = UserRole.USER,
+    ) @Max(value = 10) var userRole: UserRole = UserRole.USER,
 
     @Column(
         nullable = false,
         length = 150,
-    )
-    var email: String? = null,
+    ) @Email var email: String = "",
 
+    // TODO: create annotation to validate specifically Phone Number not just Number-Format
     @Column(
         length = 15,
-    )
-    var phone: String? = null,
+    ) @Numeric var phone: String = "",
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(
-        name = "address_id",
-        foreignKey = ForeignKey(name = "address_id_fk")
-    )
-    var address: Address? = null,
+    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(
+        name = "address_id", foreignKey = ForeignKey(name = "address_id_fk")
+    ) var address: Address? = null,
 )

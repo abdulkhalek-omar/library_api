@@ -39,15 +39,15 @@ GET http://localhost:8080/api/v1/address/all
 ### Get Address By Id
 GET http://localhost:8080/api/v1/address/1
 
-### Create Address and Country
+### Create Address
 POST http://localhost:8080/api/v1/address
 Content-Type: application/json
 
 {
-  "street": "123 Main St",
-  "addressLine1": "Apt 456",
-  "addressLine2": "",
-  "city": "New York",
+  "street": "",
+  "addressLine1": "",
+  "addressLine2": null,
+  "city": "",
   "postalCode": "10001",
   "country": {
     "id": 3
