@@ -1,3 +1,43 @@
+### Get All Address
+GET http://localhost:8080/api/v1/address/all
+
+### Get Address By Id
+GET http://localhost:8080/api/v1/address/1
+
+### Create Address
+POST http://localhost:8080/api/v1/address
+Content-Type: application/json
+
+{
+  "street": "",
+  "addressLine1": "",
+  "addressLine2": null,
+  "city": "",
+  "postalCode": "10001",
+  "country": {
+	"id": 3
+  }
+}
+
+### Update Address By Id
+PUT http://localhost:8080/api/v1/address/18
+Content-Type: application/json
+
+{
+  "street": "456 Main St",
+  "addressLine1": "Unit 789",
+  "addressLine2": "Suite 123",
+  "city": "San Francisco",
+  "postalCode": "94102",
+  "country": {
+	"id": 3
+  }
+}
+
+### Delete Address by Id
+DELETE http://localhost:8080/api/v1/address/23
+
+
 ### findAllUsers
 GET http://localhost:8080/api/v1/users
 
@@ -33,44 +73,6 @@ Content-Type: application/json
 ### Delete User By Id
 DELETE http://localhost:8080/api/v1/users/1
 
-### Get All Address
-GET http://localhost:8080/api/v1/address/all
-
-### Get Address By Id
-GET http://localhost:8080/api/v1/address/1
-
-### Create Address
-POST http://localhost:8080/api/v1/address
-Content-Type: application/json
-
-{
-  "street": "",
-  "addressLine1": "",
-  "addressLine2": null,
-  "city": "",
-  "postalCode": "10001",
-  "country": {
-    "id": 3
-  }
-}
-
-### Update Address By Id
-PUT http://localhost:8080/api/v1/address/18
-Content-Type: application/json
-
-{
-  "street": "456 Main St",
-  "addressLine1": "Unit 789",
-  "addressLine2": "Suite 123",
-  "city": "San Francisco",
-  "postalCode": "94102",
-  "country": {
-    "id": 3
-  }
-}
-
-### Delete Address by Id
-DELETE http://localhost:8080/api/v1/address/23
 
 ### Get all Countries
 GET http://localhost:8080/api/v1/country/all

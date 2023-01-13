@@ -12,5 +12,5 @@
 | Spring Data JPA     |
 
 | Project Requirements | 
-|---------------------|
-| Java 17             |
+|----------------------|
+| Java 17              |

@@ -15,26 +15,21 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("api/v1/address")
 class AddressController(private val addressService: AddressService) {
-    @GetMapping("all")
-    fun findAllAddresses() = addressService.findAllAddresses()
+	@GetMapping("all")
+	fun findAllAddresses() = addressService.findAllAddresses()
 
-    @GetMapping("/{addressId}")
-    fun findAddressById(@PathVariable addressId: Long) = addressService.findAddressById(addressId)
+	@GetMapping("/{addressId}")
+	fun findAddressById(@PathVariable addressId: Long) = addressService.findAddressById(addressId)
 
-    @PostMapping
-    fun createAddress(@Valid @RequestBody requestAddress: Address): ResponseEntity<Any> {
-        try {
-            addressService.createAddress(requestAddress)
-        } catch (ex: MethodArgumentNotValidException) {
-            return ResponseEntity.ok().body("Address created successfully")
-        }
-        return ResponseEntity.ok().body("Address created successfully")
-    }
+	@PostMapping
+	fun createAddress(@Valid @RequestBody requestAddress: Address): ResponseEntity<String> =
+		addressService.createAddress(requestAddress)
 
-    @PutMapping("/{addressId}")
-    fun updateAddress(@PathVariable addressId: Long, @RequestBody requestAddress: Address) =
-        addressService.update(addressId, requestAddress)
 
-    @DeleteMapping("/{addressId}")
-    fun deleteAddress(@PathVariable addressId: Long) = addressService.delete(addressId)
+	@PutMapping("/{addressId}")
+	fun updateAddress(@PathVariable addressId: Long, @RequestBody requestAddress: Address) =
+		addressService.update(addressId, requestAddress)
+
+	@DeleteMapping("/{addressId}")
+	fun deleteAddress(@PathVariable addressId: Long) = addressService.delete(addressId)
 }
