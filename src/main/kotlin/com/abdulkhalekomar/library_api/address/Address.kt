@@ -10,7 +10,6 @@ import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.SequenceGenerator
-import jakarta.validation.constraints.Max
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size
 
@@ -23,23 +22,22 @@ class Address(
 
 	@Column(
 		nullable = false,
-	) @NotBlank @Size(max = 255) var addressLine1: String? = null,
+	) @get:NotBlank @get:Size(max = 255) var addressLine1: String? = null,
 
-	@Column(
-	) @Max(value = 255) var addressLine2: String? = null,
+	@Size(max = 255) var addressLine2: String? = null,
 
 	@Column(
 		length = 150,
 		nullable = false,
-	) @NotBlank @Max(value = 150) var city: String = "",
+	) @get:NotBlank @get:Size(max = 150) var city: String? = null,
 
 	@Column(
 		length = 10,
 		nullable = false,
-	) @NotBlank @Max(value = 10) var postalCode: String = "",
+	) @get:NotBlank @get:Size(max = 10) var postalCode: String? = null,
 
 	@ManyToOne @JoinColumn(
-		name = "country_id", foreignKey = ForeignKey(name = "country_id_fk")
+		name = "country_id", foreignKey = ForeignKey(name = "country_id_fk"),
 	) var country: Country? = null,
 
 	@Id @SequenceGenerator(

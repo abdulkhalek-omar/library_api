@@ -1,16 +1,12 @@
 package com.abdulkhalekomar.library_api.address
 
-import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
 @Service
 class AddressService(private var addressRepository: IAddressRepository) {
 	fun findAllAddresses(): Iterable<Address> = addressRepository.findAll()
 	fun findAddressById(addressId: Long) = addressRepository.findById(addressId)
-	fun createAddress(requestAddress: Address): ResponseEntity<String> {
-		addressRepository.save(requestAddress)
-		return ResponseEntity.ok("Address is Valid")
-	}
+	fun createAddress(requestAddress: Address) = addressRepository.save(requestAddress)
 
 	fun update(addressId: Long, requestAddress: Address): String {
 		val foundAddress = addressRepository.findById(addressId)

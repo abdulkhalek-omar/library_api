@@ -1,8 +1,6 @@
 package com.abdulkhalekomar.library_api.address
 
 import jakarta.validation.Valid
-import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -22,8 +20,7 @@ class AddressController(private val addressService: AddressService) {
 	fun findAddressById(@PathVariable addressId: Long) = addressService.findAddressById(addressId)
 
 	@PostMapping
-	fun createAddress(@Valid @RequestBody requestAddress: Address): ResponseEntity<String> =
-		addressService.createAddress(requestAddress)
+	fun createAddress(@Valid @RequestBody requestAddress: Address) = addressService.createAddress(requestAddress)
 
 
 	@PutMapping("/{addressId}")
