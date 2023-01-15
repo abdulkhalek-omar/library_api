@@ -30,11 +30,11 @@ import java.time.LocalDateTime
 class Loan(
 	@Column(
 		nullable = false,
-	) @Temporal(TemporalType.TIMESTAMP) @get:NotBlank var loanData: LocalDateTime = LocalDateTime.now(),
+	) @Temporal(TemporalType.TIMESTAMP) var loanData: LocalDateTime = LocalDateTime.now(),
 
 	@Column(
 		nullable = false,
-	) @Temporal(TemporalType.TIMESTAMP) @get:NotBlank @get:Future var returnData: LocalDateTime = LocalDateTime.now().plusDays(3),
+	) @Temporal(TemporalType.TIMESTAMP) @get:Future var returnData: LocalDateTime = LocalDateTime.now().plusDays(3),
 
 	@ManyToOne @JoinColumn(
 		name = "user_id", foreignKey = ForeignKey(name = "user_id_fk")

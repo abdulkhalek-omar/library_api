@@ -45,10 +45,11 @@ class User(
 		length = 150,
 	) @get:NotBlank @get:Size(min = 2, max = 150) var lastName: String? = null,
 
+	// TODO: Create validation annotation for enum
 	@Enumerated(EnumType.STRING) @Column(
 		nullable = false,
 		length = 10,
-	) @get:Max(value = 10) var userRole: UserRole = UserRole.USER,
+	) var userRole: UserRole = UserRole.USER,
 
 	@Column(
 		nullable = false,
@@ -70,6 +71,6 @@ class User(
 		allocationSize = 1,
 	) @GeneratedValue(
 		strategy = GenerationType.SEQUENCE,
-		generator = "user_generator",
+		generator = "user_seq",
 	) var id: Long,
 )

@@ -9,12 +9,14 @@ import jakarta.persistence.SequenceGenerator
 import jakarta.persistence.Table
 import jakarta.validation.constraints.Max
 import jakarta.validation.constraints.NotBlank
+import jakarta.validation.constraints.Size
+import kotlin.math.max
 
 @Entity
 class Publisher(
 	@Column(
 		nullable = false,
-	) @get:NotBlank @get:Max(value = 255) var publisherName: String? = null,
+	) @get:NotBlank @get:Size(max = 255) var publisherName: String? = null,
 
 	@Id @SequenceGenerator(
 		sequenceName = "publisher_id_sequence",

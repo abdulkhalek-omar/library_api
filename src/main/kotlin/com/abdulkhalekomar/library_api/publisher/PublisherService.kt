@@ -22,9 +22,9 @@ class PublisherService(private val publisherRepository: IPublisherRepository) {
 			val publisher = findPublisher.get()
 			publisher.publisherName = requestPublisher.publisherName
 			publisherRepository.save(publisher)
-			return "Publisher is successfully created"
+			return "Publisher is successfully Updated"
 		}
-		return "Failed to created Publisher"
+		return "Failed to Updated Publisher"
 	}
 
 	fun deletePublisher(publisherId: Long): String {

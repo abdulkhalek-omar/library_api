@@ -80,9 +80,9 @@ VALUES (2, 'user2@example.com', 'fUser', 'Luser2', '092145446822', 'USER');
 INSERT INTO libraryDB.user (id, email, first_name, last_name, phone, user_role)
 VALUES (3, 'admin@example.com', 'f_admin', 'l_admin', '092145446000', 'ADMIN');
 ####################################### address #######################################
-INSERT INTO libraryDB.address (id, address_line_1, address_line_2, city, postal_code, street, country_id)
+INSERT INTO libraryDB.address (id, address_line1, address_line2, city, postal_code, street, country_id)
 VALUES (1, 'Frankfurt', null, 'Enkenbach', '67677 ', 'Mozartstr. 9', 7);
-INSERT INTO libraryDB.address (id, address_line_1, address_line_2, city, postal_code, street, country_id)
+INSERT INTO libraryDB.address (id, address_line1, address_line2, city, postal_code, street, country_id)
 VALUES (2, 'Berlin', null, 'Dieter Wellhausen', 'D-11179', 'Dieter Wellhausen', 7);
 # ####################################### user_address #######################################
 # INSERT INTO libraryDB.user_address (id, user_id, address_id)

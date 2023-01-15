@@ -17,7 +17,7 @@ class UserService(private val userRepository: IUserRepository, private val iAddr
 			userRepository.save(requestUser)
 			"User successfully created"
 		} catch (e: Exception) {
-			"Failed to created User"
+			"Failed to created User: $e"
 		}
 	}
 
@@ -27,6 +27,7 @@ class UserService(private val userRepository: IUserRepository, private val iAddr
 			val user = foundUser.get()
 			user.firstName = requestUser.firstName
 			user.lastName = requestUser.lastName
+			user.phone = requestUser.phone
 			userRepository.save(user)
 			return "User is successfully Updated"
 		}
