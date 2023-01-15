@@ -8,7 +8,7 @@ class AddressService(private var addressRepository: IAddressRepository) {
 	fun findAddressById(addressId: Long) = addressRepository.findById(addressId)
 	fun createAddress(requestAddress: Address) = addressRepository.save(requestAddress)
 
-	fun update(addressId: Long, requestAddress: Address): String {
+	fun update(addressId: Long, requestAddress: Address) {
 		val foundAddress = addressRepository.findById(addressId)
 		if (foundAddress.isPresent) {
 			val address = foundAddress.get()
@@ -17,11 +17,8 @@ class AddressService(private var addressRepository: IAddressRepository) {
 			address.addressLine2 = requestAddress.addressLine2
 			address.city = requestAddress.city
 			address.postalCode = requestAddress.postalCode
-			address.id = requestAddress.id
 			addressRepository.save(address)
-			return "Address is successfully Updated"
 		}
-		return "Address does not exists"
 	}
 
 	fun delete(addressId: Long): String {

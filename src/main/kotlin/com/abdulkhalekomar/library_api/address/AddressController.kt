@@ -22,9 +22,8 @@ class AddressController(private val addressService: AddressService) {
 	@PostMapping
 	fun createAddress(@Valid @RequestBody requestAddress: Address) = addressService.createAddress(requestAddress)
 
-
 	@PutMapping("/{addressId}")
-	fun updateAddress(@PathVariable addressId: Long, @RequestBody requestAddress: Address) =
+	fun updateAddress(@PathVariable addressId: Long, @Valid @RequestBody requestAddress: Address) =
 		addressService.update(addressId, requestAddress)
 
 	@DeleteMapping("/{addressId}")
