@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "cf7dbd09-e14f-4479-ae9c-ccb5ff16eb2f",
+		"name": "Book",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19785618"
+	},
+	"item": [
+		{
+			"name": "Find all Books",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/book/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"book",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Book By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/book/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"book",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n  \"title\": \"Title12\",\r\n  \"description\": \"As you grow older, you will discover that you have two hands, one for helping yourself, the other for helping others.\",\r\n  \"numberOfPage\": 200,\r\n  \"isbn\": \"1234-1111-1230\",\r\n  \"publishAt\": \"2022-12-12T17:24:44\",\r\n  \"language\": {\r\n    \"id\": 1\r\n  },\r\n  \"author\": {\r\n    \"id\": 1\r\n  },\r\n  \"category\": {\r\n    \"id\": 1\r\n  },\r\n  \"publisher\": {\r\n    \"id\": 1\r\n  }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Book By Id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Title00\",\r\n  \"description\": \"As you grow older, you will discover that you have two hands, one for helping yourself, the other for helping others.\",\r\n  \"numberOfPage\": 200,\r\n  \"isbn\": \"1234-1110-1230\",\r\n  \"publishAt\": \"2022-12-12T17:24:44\",\r\n  \"language\": {\r\n    \"id\": 1\r\n  },\r\n  \"author\": {\r\n    \"id\": 1\r\n  },\r\n  \"category\": {\r\n    \"id\": 1\r\n  },\r\n  \"publisher\": {\r\n    \"id\": 1\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/book/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"book",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Book by Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/book/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"book",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
