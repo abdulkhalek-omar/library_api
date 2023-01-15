@@ -28,6 +28,7 @@ class UserService(private val userRepository: IUserRepository, private val iAddr
 			user.firstName = requestUser.firstName
 			user.lastName = requestUser.lastName
 			user.phone = requestUser.phone
+			user.address!!.id = requestUser.address!!.id
 			userRepository.save(user)
 			return "User is successfully Updated"
 		}
