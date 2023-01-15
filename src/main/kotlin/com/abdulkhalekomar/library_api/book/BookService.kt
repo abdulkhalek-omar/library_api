@@ -7,9 +7,9 @@ import com.abdulkhalekomar.library_api.publisher.Publisher
 import org.springframework.stereotype.Service
 
 @Service
-class BookService(private val iBookRepository: IBookRepository) {
-    fun findAllBooks(): List<Book> = iBookRepository.findAll()
-    fun findBookById(id: Long) = iBookRepository.findById(id)
+class BookService(private val bookRepository: IBookRepository) {
+    fun findAllBooks(): Iterable<Book> = bookRepository.findAll()
+    fun findBookById(id: Long) = bookRepository.findById(id)
     fun createBook(requestBook: Book): String {
         return try {
             val author = Author(id = requestBook.author!!.id)
@@ -20,7 +20,7 @@ class BookService(private val iBookRepository: IBookRepository) {
             requestBook.category = category
             requestBook.language = language
             requestBook.publisher = publisher
-            iBookRepository.save(requestBook)
+            bookRepository.save(requestBook)
             "Book is successfully created"
         } catch (e: Exception) {
             "Failed to create book: $e"
@@ -28,7 +28,7 @@ class BookService(private val iBookRepository: IBookRepository) {
     }
 
     fun updateBook(bookId: Long, requestBook: Book): String {
-        val findBook = iBookRepository.findById(bookId)
+        val findBook = bookRepository.findById(bookId)
         if (findBook.isPresent) {
             return try {
                 val book = findBook.get()
@@ -41,7 +41,7 @@ class BookService(private val iBookRepository: IBookRepository) {
                 book.category = requestBook.category
                 book.language = requestBook.language
                 book.publisher = requestBook.publisher
-                iBookRepository.save(book)
+                bookRepository.save(book)
                 "Book is successfully updated"
             } catch (e: Exception) {
                 "Book is found; updated failed: $e"
@@ -51,8 +51,8 @@ class BookService(private val iBookRepository: IBookRepository) {
     }
 
     fun deleteBook(bookId: Long): String {
-        iBookRepository.deleteById(bookId)
-        if (!iBookRepository.existsById(bookId)) {
+        bookRepository.deleteById(bookId)
+        if (!bookRepository.existsById(bookId)) {
             return "Book is successfully deleted"
         }
         return "Failed to delete Book"

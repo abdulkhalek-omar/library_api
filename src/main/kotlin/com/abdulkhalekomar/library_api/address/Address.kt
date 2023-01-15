@@ -41,11 +41,8 @@ class Address(
 	) var country: Country? = null,
 
 	@Id @SequenceGenerator(
-		sequenceName = "address_generator",
-		name = "address_seq",
-		allocationSize = 1,
+		sequenceName = "address_generator", name = "address_seq", allocationSize = 1,
 	) @GeneratedValue(
-		strategy = GenerationType.SEQUENCE,
-		generator = "address_seq",
+		strategy = GenerationType.SEQUENCE, generator = "address_seq",
 	) var id: Long,
 )

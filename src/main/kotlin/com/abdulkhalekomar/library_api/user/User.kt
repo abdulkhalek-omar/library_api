@@ -16,6 +16,7 @@ import jakarta.persistence.ManyToOne
 import jakarta.persistence.SequenceGenerator
 import jakarta.persistence.Table
 import jakarta.persistence.UniqueConstraint
+import jakarta.validation.constraints.Digits
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.Max
 import jakarta.validation.constraints.NotBlank
@@ -23,52 +24,52 @@ import jakarta.validation.constraints.Size
 
 @Entity(name = "User")
 @Table(
-    name = "User",
-    uniqueConstraints = [
-        UniqueConstraint(
-            name = "email_unique", columnNames = ["email"]
-        ),
-        UniqueConstraint(
-            name = "phone_unique", columnNames = ["phone"]
-        ),
-    ],
+	name = "User",
+	uniqueConstraints = [
+		UniqueConstraint(
+			name = "email_unique", columnNames = ["email"]
+		),
+		UniqueConstraint(
+			name = "phone_unique", columnNames = ["phone"]
+		),
+	],
 )
-data class User(
-    @Id @SequenceGenerator(
-        sequenceName = "user_generator",
-        name = "user_seq",
-        allocationSize = 1,
-    ) @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "user_generator",
-    ) var id: Long,
+class User(
+	@Column(
+		nullable = false,
+		length = 100,
+	) @get:NotBlank @get:Size(min = 2, max = 100) var firstName: String? = null,
 
-    @Column(
-        nullable = false,
-        length = 100,
-    ) @NotBlank @Size(min = 2, max = 100) var firstName: String = "",
+	@Column(
+		nullable = false,
+		length = 150,
+	) @get:NotBlank @get:Size(min = 2, max = 150) var lastName: String? = null,
 
-    @Column(
-        nullable = false,
-        length = 150,
-    ) @NotBlank @Size(min = 2, max = 150) var lastName: String = "",
+	@Enumerated(EnumType.STRING) @Column(
+		nullable = false,
+		length = 10,
+	) @get:Max(value = 10) var userRole: UserRole = UserRole.USER,
 
-    @Enumerated(EnumType.STRING) @Column(
-        nullable = false,
-        length = 10,
-    ) @Max(value = 10) var userRole: UserRole = UserRole.USER,
+	@Column(
+		nullable = false,
+		length = 150,
+	) @get:Email var email: String? = null,
 
-    @Column(
-        nullable = false,
-        length = 150,
-    ) @Email var email: String = "",
+	// TODO: create annotation to validate specifically Phone Number
+	@Column(
+		length = 15,
+	) @get:Digits(integer = 15, fraction = 0) var phone: String? = null,
 
-    // TODO: create annotation to validate specifically Phone Number not just Number-Format
-    @Column(
-        length = 15,
-    ) @Numeric var phone: String = "",
+	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(
+		name = "address_id", foreignKey = ForeignKey(name = "address_id_fk")
+	) var address: Address? = null,
 
-    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(
-        name = "address_id", foreignKey = ForeignKey(name = "address_id_fk")
-    ) var address: Address? = null,
+	@Id @SequenceGenerator(
+		sequenceName = "user_generator",
+		name = "user_seq",
+		allocationSize = 1,
+	) @GeneratedValue(
+		strategy = GenerationType.SEQUENCE,
+		generator = "user_generator",
+	) var id: Long,
 )

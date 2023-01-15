@@ -11,30 +11,30 @@ import jakarta.persistence.UniqueConstraint
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size
 
-@Entity(name = "Category")
+@Entity
 @Table(
-    name = "Category",
-    uniqueConstraints = [
-        UniqueConstraint(
-            name = "category_name_unique",
-            columnNames = ["category_name"],
-        ),
-    ],
+	uniqueConstraints = [
+		UniqueConstraint(
+			name = "category_name_unique",
+			columnNames = ["category_name"],
+		),
+	],
 )
-data class Category(
-    @Id @SequenceGenerator(
-        sequenceName = "category_generator",
-        name = "category_seq",
-        allocationSize = 1,
-    ) @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "category_seq",
-    ) var id: Long,
+class Category(
+	@Column(
+		name = "category_name",
+		nullable = false,
+		unique = true,
+		length = 150,
+	) @get:NotBlank @get:Size(min = 2, max = 150) var categoryName: String = "",
 
-    @Column(
-        name = "category_name",
-        nullable = false,
-        unique = true,
-        length = 150,
-    ) @NotBlank @Size(min = 2, max = 150) var categoryName: String = "",
-)
+	@Id @SequenceGenerator(
+		name = "category_generator",
+		sequenceName = "category_seq",
+		allocationSize = 1,
+	) @GeneratedValue(
+		strategy = GenerationType.SEQUENCE,
+		generator = "category_seq",
+	) var id: Long,
+
+	)

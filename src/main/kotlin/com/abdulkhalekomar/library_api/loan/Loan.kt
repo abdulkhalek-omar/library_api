@@ -13,6 +13,8 @@ import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.SequenceGenerator
 import jakarta.persistence.Table
+import jakarta.persistence.Temporal
+import jakarta.persistence.TemporalType
 import jakarta.persistence.UniqueConstraint
 import jakarta.validation.constraints.Future
 import jakarta.validation.constraints.NotBlank
@@ -20,36 +22,34 @@ import java.time.LocalDateTime
 
 @Entity(name = "Loan")
 @Table(
-    name = "Loan", uniqueConstraints = [UniqueConstraint(
-        name = "user_book_unique",
-        columnNames = ["user_id", "book_id"],
-    )]
+	name = "Loan", uniqueConstraints = [UniqueConstraint(
+		name = "user_book_unique",
+		columnNames = ["user_id", "book_id"],
+	)]
 )
-data class Loan(
-    @Id @SequenceGenerator(
-        name = "loan_id_sequence",
-        sequenceName = "loan_id_sequence",
-        allocationSize = 1,
-    ) @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "loan_id_sequence",
-    ) var id: Long,
+class Loan(
+	@Column(
+		nullable = false,
+	) @Temporal(TemporalType.TIMESTAMP) @get:NotBlank var loanData: LocalDateTime = LocalDateTime.now(),
 
-    @Column(
-        name = "loan_data",
-        nullable = false,
-    ) @NotBlank @DateFormat var loanData: LocalDateTime = LocalDateTime.now(),
+	@Column(
+		nullable = false,
+	) @Temporal(TemporalType.TIMESTAMP) @get:NotBlank @get:Future var returnData: LocalDateTime = LocalDateTime.now().plusDays(3),
 
-    @Column(
-        name = "return_data",
-        nullable = false,
-    ) @NotBlank @DateFormat @Future var returnData: LocalDateTime = LocalDateTime.now().plusDays(3),
+	@ManyToOne @JoinColumn(
+		name = "user_id", foreignKey = ForeignKey(name = "user_id_fk")
+	) var user: User? = null,
 
-    @ManyToOne @JoinColumn(
-        name = "user_id", foreignKey = ForeignKey(name = "user_id_fk")
-    ) var user: User? = null,
+	@ManyToOne @JoinColumn(
+		name = "book_id", foreignKey = ForeignKey(name = "book_id_fk")
+	) var book: Book? = null,
 
-    @ManyToOne @JoinColumn(
-        name = "book_id", foreignKey = ForeignKey(name = "book_id_fk")
-    ) var book: Book? = null,
+	@Id @SequenceGenerator(
+		name = "loan_generator",
+		sequenceName = "loan_seq",
+		allocationSize = 1,
+	) @GeneratedValue(
+		strategy = GenerationType.SEQUENCE,
+		generator = "loan_seq",
+	) var id: Long,
 )
