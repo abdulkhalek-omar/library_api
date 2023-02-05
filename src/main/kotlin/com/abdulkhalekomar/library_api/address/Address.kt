@@ -13,15 +13,15 @@ import jakarta.persistence.SequenceGenerator
 
 @Entity
 class Address(
-	@Column(length = 150, nullable = false) var street: String = "",
+	@Column(length = 150, nullable = false) var street: String? = null,
 
-	@Column(nullable = false) var addressLine1: String = "",
+	@Column(nullable = false) var addressLine1: String? = null,
 
 	var addressLine2: String? = null,
 
-	@Column(length = 150, nullable = false) var city: String = "",
+	@Column(length = 150, nullable = false) var city: String? = null,
 
-	@Column(length = 10, nullable = false) var postalCode: String = "",
+	@Column(length = 10, nullable = false) var postalCode: String? = null,
 
 	@ManyToOne @JoinColumn(
 		name = "country_id", foreignKey = ForeignKey(name = "country_id_fk"),
