@@ -10,31 +10,18 @@ import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.SequenceGenerator
-import jakarta.validation.constraints.NotBlank
-import jakarta.validation.constraints.Size
 
 @Entity
 class Address(
-	@Column(
-		length = 150,
-		nullable = false,
-	) @get:NotBlank @get:Size(max = 150) var street: String? = null,
+	@Column(length = 150, nullable = false) var street: String = "",
 
-	@Column(
-		nullable = false,
-	) @get:NotBlank @get:Size(max = 255) var addressLine1: String? = null,
+	@Column(nullable = false) var addressLine1: String = "",
 
-	@Size(max = 255) var addressLine2: String? = null,
+	var addressLine2: String? = null,
 
-	@Column(
-		length = 150,
-		nullable = false,
-	) @get:NotBlank @get:Size(max = 150) var city: String? = null,
+	@Column(length = 150, nullable = false) var city: String = "",
 
-	@Column(
-		length = 10,
-		nullable = false,
-	) @get:NotBlank @get:Size(max = 10) var postalCode: String? = null,
+	@Column(length = 10, nullable = false) var postalCode: String = "",
 
 	@ManyToOne @JoinColumn(
 		name = "country_id", foreignKey = ForeignKey(name = "country_id_fk"),
@@ -44,5 +31,5 @@ class Address(
 		sequenceName = "address_generator", name = "address_seq", allocationSize = 1,
 	) @GeneratedValue(
 		strategy = GenerationType.SEQUENCE, generator = "address_seq",
-	) var id: Long,
+	) var id: Long = 0,
 )
