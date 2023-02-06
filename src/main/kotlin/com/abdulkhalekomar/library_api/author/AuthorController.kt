@@ -20,10 +20,10 @@ class AuthorController(private val authorService: AuthorService) {
 	fun findAuthorById(@PathVariable authorId: Long) = authorService.findAuthorById(authorId)
 
 	@PostMapping
-	fun createAuthor(@Valid @RequestBody authorRequest: Author) = authorService.createAuthor(authorRequest)
+	fun createAuthor(@Valid @RequestBody authorRequest: AuthorRequest) = authorService.createAuthor(authorRequest)
 
 	@PutMapping("/{authorId}")
-	fun updateAuthor(@PathVariable authorId: Long, @Valid @RequestBody authorRequest: Author) =
+	fun updateAuthor(@PathVariable authorId: Long, @Valid @RequestBody authorRequest: AuthorRequest) =
 		authorService.updateAuthor(authorId, authorRequest)
 
 	@DeleteMapping("/{authorId}")

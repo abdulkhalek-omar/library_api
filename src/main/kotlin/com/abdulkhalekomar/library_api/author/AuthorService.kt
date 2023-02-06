@@ -1,6 +1,7 @@
 package com.abdulkhalekomar.library_api.author
 
 import com.abdulkhalekomar.library_api.address.Address
+import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
 @Service
@@ -9,30 +10,26 @@ class AuthorService(private val authorRepository: IAuthorRepository) {
 
 	fun findAuthorById(authorId: Long) = authorRepository.findById(authorId)
 
-	fun createAuthor(authorRequest: Author): String {
-		return try {
-			val address = Address(id = authorRequest.address!!.id)
-			authorRequest.address = address
-			authorRepository.save(authorRequest)
-			"Author created successfully"
-		} catch (e: Exception) {
-			"Failed to create Author: $e"
-		}
+	fun createAuthor(authorRequest: AuthorRequest): ResponseEntity<AuthorCreateResponse> {
+		val author = authorRequest.toEntity()
+		val address = Address(id = author.address!!.id)
+		author.address = address
+		return ResponseEntity.ok(authorRepository.save(author).toCreateResponse())
 	}
 
-	fun updateAuthor(authorId: Long, authorRequest: Author): String {
+	fun updateAuthor(authorId: Long, authorRequest: AuthorRequest): ResponseEntity<AuthorUpdateResponse> {
 		val findAuthor = authorRepository.findById(authorId)
-		if (findAuthor.isPresent) {
-			val author = findAuthor.get()
-			author.birthDate = authorRequest.birthDate
-			author.cv = authorRequest.cv
-			author.firstName = authorRequest.firstName
-			author.lastName = authorRequest.lastName
-			author.address = authorRequest.address
-			authorRepository.save(author)
-			return "Author is successfully updated"
+		if (!findAuthor.isPresent) {
+			return ResponseEntity.notFound().build()
 		}
-		return "Failed to updated Author"
+		val author = findAuthor.get()
+		author.birthDate = authorRequest.birthDate
+		author.cv = authorRequest.cv
+		author.firstName = authorRequest.firstName
+		author.lastName = authorRequest.lastName
+		author.address = authorRequest.address
+		authorRepository.save(author)
+		return ResponseEntity.ok(author.toUpdateResponse())
 	}
 
 	fun deleteAuthor(authorId: Long): String {

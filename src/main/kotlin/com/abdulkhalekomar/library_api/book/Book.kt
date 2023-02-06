@@ -17,14 +17,7 @@ import jakarta.persistence.Table
 import jakarta.persistence.Temporal
 import jakarta.persistence.TemporalType
 import jakarta.persistence.UniqueConstraint
-import jakarta.validation.constraints.Digits
-import jakarta.validation.constraints.Max
-import jakarta.validation.constraints.NotBlank
-import jakarta.validation.constraints.NotNull
-import jakarta.validation.constraints.PastOrPresent
-import jakarta.validation.constraints.Size
 import java.time.LocalDateTime
-import kotlin.math.max
 
 // import kotlinx.datetime.LocalDateTime
 @Entity
@@ -35,18 +28,15 @@ import kotlin.math.max
 	)]
 )
 class Book(
-	@Column(
-		nullable = false,
-		length = 200,
-	) @get:NotBlank @get:Size(min = 2, max = 200) var title: String? = null,
+	@Column(nullable = false, length = 200) var title: String? = null,
 
-	@get:NotNull var description: String? = null,
+	var description: String? = null,
 
-	@get:Digits(integer = 4, fraction = 0) var numberOfPage: Int? = null,
+	var numberOfPage: Int? = null,
 
-	@Column(length = 20) @get:NotNull @get:Size(max = 20) var isbn: String? = null,
+	@Column(length = 20) var isbn: String? = null,
 
-	@Temporal(TemporalType.TIMESTAMP) @get:PastOrPresent var publishAt: LocalDateTime? = null,
+	@Temporal(TemporalType.TIMESTAMP) var publishAt: LocalDateTime? = null,
 
 	@ManyToOne @JoinColumn(
 		name = "language_id",
@@ -74,5 +64,5 @@ class Book(
 	) @GeneratedValue(
 		strategy = GenerationType.SEQUENCE,
 		generator = "book_seq",
-	) var id: Long,
+	) var id: Long = 0,
 )

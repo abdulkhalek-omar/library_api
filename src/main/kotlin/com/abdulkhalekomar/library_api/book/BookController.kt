@@ -20,10 +20,10 @@ class BookController(private val bookService: BookService) {
 	fun findBookById(@PathVariable bookId: Long) = bookService.findBookById(bookId)
 
 	@PostMapping
-	fun createBook(@Valid @RequestBody requestBook: Book) = bookService.createBook(requestBook)
+	fun createBook(@Valid @RequestBody requestBook: BookRequest) = bookService.createBook(requestBook)
 
 	@PutMapping("/{bookId}")
-	fun updateBook(@PathVariable bookId: Long, @Valid @RequestBody requestBook: Book) =
+	fun updateBook(@PathVariable bookId: Long, @Valid @RequestBody requestBook: BookRequest) =
 		bookService.updateBook(bookId, requestBook)
 
 	@DeleteMapping("/{bookId}")
