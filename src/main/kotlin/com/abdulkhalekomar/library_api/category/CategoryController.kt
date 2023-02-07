@@ -20,10 +20,10 @@ class CategoryController(private val categoryService: CategoryService) {
 	fun findCategoryById(@PathVariable categoryId: Long) = categoryService.findCategoryById(categoryId)
 
 	@PostMapping
-	fun createCategory(@Valid @RequestBody categoryRequest: Category) = categoryService.createCategory(categoryRequest)
+	fun createCategory(@Valid @RequestBody categoryRequest: CategoryRequest) = categoryService.createCategory(categoryRequest)
 
 	@PutMapping("/{categoryId}")
-	fun updateCategory(@PathVariable categoryId: Long, @Valid @RequestBody categoryRequest: Category) =
+	fun updateCategory(@PathVariable categoryId: Long, @Valid @RequestBody categoryRequest: CategoryRequest) =
 		categoryService.updateCategory(categoryId, categoryRequest)
 
 	@DeleteMapping("/{categoryId}")

@@ -8,8 +8,6 @@ import jakarta.persistence.Id
 import jakarta.persistence.SequenceGenerator
 import jakarta.persistence.Table
 import jakarta.persistence.UniqueConstraint
-import jakarta.validation.constraints.NotBlank
-import jakarta.validation.constraints.Size
 
 @Entity
 @Table(
@@ -21,12 +19,7 @@ import jakarta.validation.constraints.Size
 	],
 )
 class Category(
-	@Column(
-		name = "category_name",
-		nullable = false,
-		unique = true,
-		length = 150,
-	) @get:NotBlank @get:Size(min = 2, max = 150) var categoryName: String = "",
+	@Column(name = "category_name", nullable = false, length = 150) var categoryName: String? = null,
 
 	@Id @SequenceGenerator(
 		name = "category_generator",
@@ -35,6 +28,5 @@ class Category(
 	) @GeneratedValue(
 		strategy = GenerationType.SEQUENCE,
 		generator = "category_seq",
-	) var id: Long,
-
-	)
+	) var id: Long = 0,
+)

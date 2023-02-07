@@ -1,29 +1,25 @@
 package com.abdulkhalekomar.library_api.country
 
+import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
 @Service
 class CountryService(private val countryRepository: ICountryRepository) {
 	fun findAllCountries(): Iterable<Country> = countryRepository.findAll()
 	fun findCountryById(countryId: Int) = countryRepository.findById(countryId)
-	fun createCountry(requestCountry: Country): String {
-		return try {
-			countryRepository.save(requestCountry)
-			"Country is successfully created"
-		} catch (e: Exception) {
-			"Country not created; request null"
-		}
+	fun createCountry(requestCountry: CountryRequest): ResponseEntity<CountryResponse> {
+		val country = countryRepository.save(requestCountry.toEntity())
+		return ResponseEntity.ok(country.toResponse())
 	}
 
-	fun updateCountry(countryId: Int, requestCountry: Country): String {
+	fun updateCountry(countryId: Int, requestCountry: CountryRequest): ResponseEntity<CountryResponse> {
 		val foundCountry = countryRepository.findById(countryId)
-		if (foundCountry.isPresent) {
-			val country = foundCountry.get()
-			country.countryName = requestCountry.countryName
-			countryRepository.save(country)
-			return "Country is successfully Updated"
+		if (!foundCountry.isPresent) {
+			return ResponseEntity.notFound().build()
 		}
-		return "Country does not exists"
+		val country = foundCountry.get()
+		country.countryName = requestCountry.countryName
+		return ResponseEntity.ok(countryRepository.save(country).toResponse())
 	}
 
 	fun deleteCountry(countryId: Int): String {

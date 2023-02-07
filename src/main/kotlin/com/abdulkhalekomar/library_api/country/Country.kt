@@ -8,8 +8,6 @@ import jakarta.persistence.Id
 import jakarta.persistence.SequenceGenerator
 import jakarta.persistence.Table
 import jakarta.persistence.UniqueConstraint
-import jakarta.validation.constraints.NotBlank
-import jakarta.validation.constraints.Size
 
 // Todo: ISO 3166-1 alpha-2
 @Entity
@@ -27,7 +25,7 @@ class Country(
 		name = "country_name",
 		nullable = false,
 		length = 150,
-	) @get:NotBlank @get:Size(min = 2, max = 150) var countryName: String? = null,
+	) var countryName: String? = null,
 
 	@Id @SequenceGenerator(
 		sequenceName = "country_generator",
@@ -36,5 +34,5 @@ class Country(
 	) @GeneratedValue(
 		strategy = GenerationType.SEQUENCE,
 		generator = "country_generator",
-	) var id: Int,
+	) var id: Int = 0,
 )

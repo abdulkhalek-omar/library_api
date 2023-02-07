@@ -20,10 +20,10 @@ class CountryController(private val iCountryService: CountryService) {
 	fun findCountryById(@PathVariable countryId: Int) = iCountryService.findCountryById(countryId)
 
 	@PostMapping
-	fun createCountry(@Valid @RequestBody requestCountry: Country) = iCountryService.createCountry(requestCountry)
+	fun createCountry(@Valid @RequestBody requestCountry: CountryRequest) = iCountryService.createCountry(requestCountry)
 
 	@PutMapping("/{countryId}")
-	fun updateCountry(@PathVariable countryId: Int, @Valid @RequestBody requestCountry: Country) = iCountryService.updateCountry(countryId, requestCountry)
+	fun updateCountry(@PathVariable countryId: Int, @Valid @RequestBody requestCountry: CountryRequest) = iCountryService.updateCountry(countryId, requestCountry)
 
 	@DeleteMapping("/{countryId}")
 	fun deleteCountry(@PathVariable countryId: Int) = iCountryService.deleteCountry(countryId)
