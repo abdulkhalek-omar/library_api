@@ -20,10 +20,10 @@ class LoanController(private val loanService: LoanService) {
 	fun findLoanById(@PathVariable loanId: Long) = loanService.findLoanById(loanId)
 
 	@PostMapping
-	fun createLoan(@Valid @RequestBody loanRequest: Loan) = loanService.createLoan(loanRequest)
+	fun createLoan(@Valid @RequestBody loanRequest: LoanRequest) = loanService.createLoan(loanRequest)
 
 	@PutMapping("/{loanId}")
-	fun updateLoan(@PathVariable loanId: Long, @Valid @RequestBody loanRequest: Loan) =
+	fun updateLoan(@PathVariable loanId: Long, @Valid @RequestBody loanRequest: LoanRequest) =
 		loanService.updateLoan(loanId, loanRequest)
 
 	@DeleteMapping("/{loanId}")

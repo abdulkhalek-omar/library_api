@@ -1,7 +1,6 @@
 package com.abdulkhalekomar.library_api.user
 
 import com.abdulkhalekomar.library_api.address.Address
-import com.abdulkhalekomar.library_api.validation_helpers.annotations.Numeric
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
@@ -16,11 +15,6 @@ import jakarta.persistence.ManyToOne
 import jakarta.persistence.SequenceGenerator
 import jakarta.persistence.Table
 import jakarta.persistence.UniqueConstraint
-import jakarta.validation.constraints.Digits
-import jakarta.validation.constraints.Email
-import jakarta.validation.constraints.Max
-import jakarta.validation.constraints.NotBlank
-import jakarta.validation.constraints.Size
 
 @Entity(name = "User")
 @Table(
@@ -38,12 +32,12 @@ class User(
 	@Column(
 		nullable = false,
 		length = 100,
-	) @get:NotBlank @get:Size(min = 2, max = 100) var firstName: String? = null,
+	) var firstName: String? = null,
 
 	@Column(
 		nullable = false,
 		length = 150,
-	) @get:NotBlank @get:Size(min = 2, max = 150) var lastName: String? = null,
+	) var lastName: String? = null,
 
 	// TODO: Create validation annotation for enum
 	@Enumerated(EnumType.STRING) @Column(
@@ -54,12 +48,12 @@ class User(
 	@Column(
 		nullable = false,
 		length = 150,
-	) @get:Email var email: String? = null,
+	) var email: String? = null,
 
 	// TODO: create annotation to validate specifically Phone Number
 	@Column(
 		length = 15,
-	) @get:Digits(integer = 15, fraction = 0) var phone: String? = null,
+	) var phone: String? = null,
 
 	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(
 		name = "address_id", foreignKey = ForeignKey(name = "address_id_fk")
@@ -72,5 +66,5 @@ class User(
 	) @GeneratedValue(
 		strategy = GenerationType.SEQUENCE,
 		generator = "user_seq",
-	) var id: Long,
+	) var id: Long = 0,
 )

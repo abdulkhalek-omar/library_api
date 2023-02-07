@@ -34,5 +34,5 @@ class Language(
 	) @GeneratedValue(
 		strategy = GenerationType.SEQUENCE,
 		generator = "language_seq",
-	) var id: Int,
+	) var id: Int = 0,
 )

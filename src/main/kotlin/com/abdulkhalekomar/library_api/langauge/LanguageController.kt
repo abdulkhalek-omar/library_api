@@ -20,10 +20,10 @@ class LanguageController(private val languageService: LanguageService) {
 	fun findLanguageById(@PathVariable languageId: Int) = languageService.findLanguageById(languageId)
 
 	@PostMapping
-	fun createLanguage(@Valid @RequestBody languageRequest: Language) = languageService.createLanguage(languageRequest)
+	fun createLanguage(@Valid @RequestBody languageRequest: LanguageRequest) = languageService.createLanguage(languageRequest)
 
 	@PutMapping("/{languageId}")
-	fun updateLanguage(@PathVariable languageId: Int, @Valid @RequestBody languageRequest: Language) = languageService.updateLanguage(languageId, languageRequest)
+	fun updateLanguage(@PathVariable languageId: Int, @Valid @RequestBody languageRequest: LanguageRequest) = languageService.updateLanguage(languageId, languageRequest)
 
 	@DeleteMapping("/{languageId}")
 	fun deleteLangaugeById(@PathVariable languageId: Int) = languageService.deleteLangaugeById(languageId)

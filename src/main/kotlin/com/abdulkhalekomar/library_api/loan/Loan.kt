@@ -2,7 +2,6 @@ package com.abdulkhalekomar.library_api.loan
 
 import com.abdulkhalekomar.library_api.book.Book
 import com.abdulkhalekomar.library_api.user.User
-import com.abdulkhalekomar.library_api.validation_helpers.annotations.DateFormat
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.ForeignKey
@@ -16,8 +15,6 @@ import jakarta.persistence.Table
 import jakarta.persistence.Temporal
 import jakarta.persistence.TemporalType
 import jakarta.persistence.UniqueConstraint
-import jakarta.validation.constraints.Future
-import jakarta.validation.constraints.NotBlank
 import java.time.LocalDateTime
 
 @Entity(name = "Loan")
@@ -34,7 +31,7 @@ class Loan(
 
 	@Column(
 		nullable = false,
-	) @Temporal(TemporalType.TIMESTAMP) @get:Future var returnData: LocalDateTime = LocalDateTime.now().plusDays(3),
+	) @Temporal(TemporalType.TIMESTAMP) var returnData: LocalDateTime = LocalDateTime.now().plusDays(3),
 
 	@ManyToOne @JoinColumn(
 		name = "user_id", foreignKey = ForeignKey(name = "user_id_fk")
@@ -51,5 +48,5 @@ class Loan(
 	) @GeneratedValue(
 		strategy = GenerationType.SEQUENCE,
 		generator = "loan_seq",
-	) var id: Long,
+	) var id: Long = 0,
 )

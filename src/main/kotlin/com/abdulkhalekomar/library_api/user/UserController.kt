@@ -22,10 +22,10 @@ class UserController(private val userService: UserService) {
 	fun findUserById(@PathVariable userId: Long): User? = userService.findUserById(userId)
 
 	@PostMapping
-	fun createUser(@Valid @RequestBody requestUser: User) = userService.createUser(requestUser)
+	fun createUser(@Valid @RequestBody requestUser: UserRequest) = userService.createUser(requestUser)
 
 	@PutMapping("/{userId}")
-	fun updateUser(@PathVariable userId: Long, @Valid @RequestBody requestUser: User) = userService.updateUserById(userId, requestUser)
+	fun updateUser(@PathVariable userId: Long, @Valid @RequestBody requestUser: UserRequest) = userService.updateUserById(userId, requestUser)
 
 	@DeleteMapping("/{userId}")
 	fun deleteUserById(@PathVariable userId: Long) = userService.deleteUserById(userId)

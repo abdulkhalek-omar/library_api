@@ -20,10 +20,10 @@ class PublisherController(private val publisherService: PublisherService) {
 	fun findPublisherById(@PathVariable publisherId: Long) = publisherService.findPublisherById(publisherId)
 
 	@PostMapping
-	fun createPublisher(@Valid @RequestBody requestPublisher: Publisher) = publisherService.createPublisher(requestPublisher)
+	fun createPublisher(@Valid @RequestBody requestPublisher: PublisherRequest) = publisherService.createPublisher(requestPublisher)
 
 	@PutMapping("/{publisherId}")
-	fun updatePublisher(@PathVariable publisherId: Long, @Valid @RequestBody requestPublisher: Publisher) = publisherService.updatePublisher(publisherId, requestPublisher)
+	fun updatePublisher(@PathVariable publisherId: Long, @Valid @RequestBody requestPublisher: PublisherRequest) = publisherService.updatePublisher(publisherId, requestPublisher)
 
 	@DeleteMapping("/{publisherId}")
 	fun deletePublisher(@PathVariable publisherId: Long) = publisherService.deletePublisher(publisherId)
