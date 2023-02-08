@@ -18,7 +18,6 @@ import java.time.LocalDate
 class Author(
 	@Column(nullable = false, length = 100) var firstName: String? = null,
 
-
 	@Column(nullable = false, length = 150) var lastName: String? = null,
 
 	var cv: String? = null,

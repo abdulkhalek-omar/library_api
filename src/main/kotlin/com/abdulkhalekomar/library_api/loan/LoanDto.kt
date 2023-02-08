@@ -6,12 +6,11 @@ import jakarta.validation.constraints.Future
 import java.time.LocalDateTime
 
 data class LoanRequest(
-	val loanData: LocalDateTime,
-	@get:Future val returnData: LocalDateTime,
+	val loanData: LocalDateTime = LocalDateTime.now(),
+	@get:Future val returnData: LocalDateTime = LocalDateTime.now().plusDays(3),
 	val user: User?,
 	val book: Book?,
-
-	)
+)
 
 data class LoanResponse(
 	val id: Long,

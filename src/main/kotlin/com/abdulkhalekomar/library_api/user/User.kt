@@ -29,31 +29,18 @@ import jakarta.persistence.UniqueConstraint
 	],
 )
 class User(
-	@Column(
-		nullable = false,
-		length = 100,
-	) var firstName: String? = null,
+	@Column(nullable = false, length = 100) var firstName: String? = null,
 
-	@Column(
-		nullable = false,
-		length = 150,
-	) var lastName: String? = null,
+	@Column(nullable = false, length = 150) var lastName: String? = null,
 
-	// TODO: Create validation annotation for enum
 	@Enumerated(EnumType.STRING) @Column(
 		nullable = false,
 		length = 10,
-	) var userRole: UserRole = UserRole.USER,
+	) var userRole: UserRole? = null,
 
-	@Column(
-		nullable = false,
-		length = 150,
-	) var email: String? = null,
+	@Column(nullable = false, length = 150) var email: String? = null,
 
-	// TODO: create annotation to validate specifically Phone Number
-	@Column(
-		length = 15,
-	) var phone: String? = null,
+	@Column(length = 15) var phone: String? = null,
 
 	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(
 		name = "address_id", foreignKey = ForeignKey(name = "address_id_fk")

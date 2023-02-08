@@ -1,6 +1,7 @@
 package com.abdulkhalekomar.library_api.user
 
 import com.abdulkhalekomar.library_api.address.IAddressRepository
+import io.micrometer.common.util.StringUtils.isNotBlank
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
@@ -27,6 +28,9 @@ class UserService(private val userRepository: IUserRepository, private val iAddr
 		user.firstName = requestUser.firstName
 		user.lastName = requestUser.lastName
 		user.phone = requestUser.phone
+		if (isNotBlank(requestUser.email) && userRepository.findUserByEmail(requestUser.email!!).isPresent) {
+			user.email = requestUser.email
+		}
 		user.address!!.id = requestUser.address!!.id
 		return ResponseEntity.ok(userRepository.save(user).toResponse())
 	}
