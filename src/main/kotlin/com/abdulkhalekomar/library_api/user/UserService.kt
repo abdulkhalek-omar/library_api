@@ -20,6 +20,7 @@ class UserService(private val userRepository: IUserRepository, private val iAddr
 	}
 
 	fun updateUserById(id: Long, requestUser: UserRequest): ResponseEntity<UserResponse> {
+		// TODO: check email unique and phone unique
 		val foundUser = userRepository.findById(id)
 		if (!foundUser.isPresent) {
 			return ResponseEntity.notFound().build()
@@ -28,7 +29,7 @@ class UserService(private val userRepository: IUserRepository, private val iAddr
 		user.firstName = requestUser.firstName
 		user.lastName = requestUser.lastName
 		user.phone = requestUser.phone
-		if (isNotBlank(requestUser.email) && userRepository.findUserByEmail(requestUser.email!!).isPresent) {
+		if (isNotBlank(requestUser.email) && !userRepository.findUserByEmail(requestUser.email!!).isPresent) {
 			user.email = requestUser.email
 		}
 		user.address!!.id = requestUser.address!!.id
