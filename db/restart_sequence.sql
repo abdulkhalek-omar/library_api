@@ -1,0 +1,1 @@
+ALTER SEQUENCE country_generator RESTART WITH 1;

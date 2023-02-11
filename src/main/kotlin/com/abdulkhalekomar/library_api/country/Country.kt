@@ -24,7 +24,7 @@ class Country(
 	@Column(
 		name = "country_name",
 		nullable = false,
-		length = 150,
+		length = 2,
 	) var countryName: String? = null,
 
 	@Id @SequenceGenerator(
