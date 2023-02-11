@@ -19,17 +19,16 @@ class Address(
 
 	var addressLine2: String? = null,
 
-	@Column(length = 150, nullable = false) var city: String? = null,
+	@Column(length = 150, nullable = false)
+	var city: String? = null,
 
-	@Column(length = 10, nullable = false) var postalCode: String? = null,
+	@Column(length = 10, nullable = false)
+	var postalCode: String? = null,
 
-	@ManyToOne @JoinColumn(
-		name = "country_id", foreignKey = ForeignKey(name = "country_id_fk"),
-	) var country: Country? = null,
+	@ManyToOne @JoinColumn(name = "country_id", foreignKey = ForeignKey(name = "country_id_fk"))
+	var country: Country? = null,
 
-	@Id @SequenceGenerator(
-		sequenceName = "address_generator", name = "address_seq", allocationSize = 1,
-	) @GeneratedValue(
-		strategy = GenerationType.SEQUENCE, generator = "address_seq",
-	) var id: Long = 0,
+	@Id @SequenceGenerator(name = "address_seq_gen", sequenceName = "address_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_seq")
+	var id: Long = 0,
 )

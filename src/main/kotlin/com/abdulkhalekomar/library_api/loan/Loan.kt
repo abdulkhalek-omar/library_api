@@ -29,20 +29,13 @@ class Loan(
 
 	@Column(nullable = false) @Temporal(TemporalType.TIMESTAMP) var returnData: LocalDateTime? = null,
 
-	@ManyToOne @JoinColumn(
-		name = "user_id", foreignKey = ForeignKey(name = "user_id_fk")
-	) var user: User? = null,
+	@ManyToOne @JoinColumn(name = "user_id", foreignKey = ForeignKey(name = "user_id_fk"))
+	var user: User? = null,
 
-	@ManyToOne @JoinColumn(
-		name = "book_id", foreignKey = ForeignKey(name = "book_id_fk")
-	) var book: Book? = null,
+	@ManyToOne @JoinColumn(name = "book_id", foreignKey = ForeignKey(name = "book_id_fk"))
+	var book: Book? = null,
 
-	@Id @SequenceGenerator(
-		name = "loan_generator",
-		sequenceName = "loan_seq",
-		allocationSize = 1,
-	) @GeneratedValue(
-		strategy = GenerationType.SEQUENCE,
-		generator = "loan_seq",
-	) var id: Long = 0,
+	@Id @SequenceGenerator(name = "loan_seq_gen", sequenceName = "loan_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "loan_seq")
+	var id: Long = 0,
 )

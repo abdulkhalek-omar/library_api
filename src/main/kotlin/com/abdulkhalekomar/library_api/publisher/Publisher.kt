@@ -9,16 +9,10 @@ import jakarta.persistence.SequenceGenerator
 
 @Entity
 class Publisher(
-	@Column(
-		nullable = false,
-	) var publisherName: String? = null,
+	@Column(nullable = false)
+	var publisherName: String? = null,
 
-	@Id @SequenceGenerator(
-		sequenceName = "publisher_id_sequence",
-		name = "publisher_id_sequence",
-		allocationSize = 1,
-	) @GeneratedValue(
-		strategy = GenerationType.SEQUENCE,
-		generator = "publisher_id_sequence",
-	) var id: Long = 0,
+	@Id @SequenceGenerator(name = "publisher_seq_gen", sequenceName = "publisher_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "publisher_seq")
+	var id: Long = 0,
 )

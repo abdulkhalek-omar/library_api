@@ -21,18 +21,10 @@ import jakarta.persistence.UniqueConstraint
 )
 class Country(
 
-	@Column(
-		name = "country_name",
-		nullable = false,
-		length = 2,
-	) var countryName: String? = null,
+	@Column(name = "country_name", nullable = false, length = 2)
+	var countryName: String? = null,
 
-	@Id @SequenceGenerator(
-		sequenceName = "country_generator",
-		name = "country_seq",
-		allocationSize = 1,
-	) @GeneratedValue(
-		strategy = GenerationType.SEQUENCE,
-		generator = "country_generator",
-	) var id: Int = 0,
+	@Id @SequenceGenerator(name = "country_seq_gen", sequenceName = "country_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "country_seq")
+	var id: Int = 0,
 )

@@ -24,13 +24,10 @@ class Author(
 
 	@Temporal(TemporalType.DATE) var birthDate: LocalDate? = null,
 
-	@ManyToOne @JoinColumn(
-		name = "address_id", foreignKey = ForeignKey(name = "address_id_author_fk")
-	) var address: Address? = null,
+	@ManyToOne @JoinColumn(name = "address_id", foreignKey = ForeignKey(name = "address_id_author_fk"))
+	var address: Address? = null,
 
-	@Id @SequenceGenerator(
-		name = "author_generator", sequenceName = "author_seq", allocationSize = 1,
-	) @GeneratedValue(
-		strategy = GenerationType.SEQUENCE, generator = "author_seq",
-	) var id: Long = 0,
+	@Id @SequenceGenerator(name = "author_seq_gen", sequenceName = "author_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "author_seq")
+	var id: Long = 0,
 )

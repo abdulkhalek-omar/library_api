@@ -38,31 +38,19 @@ class Book(
 
 	@Temporal(TemporalType.TIMESTAMP) var publishAt: LocalDateTime? = null,
 
-	@ManyToOne @JoinColumn(
-		name = "language_id",
-		foreignKey = ForeignKey(name = "language_id_fk"),
-	) var language: Language? = null,
+	@ManyToOne @JoinColumn(name = "language_id", foreignKey = ForeignKey(name = "language_id_fk"))
+	var language: Language? = null,
 
-	@ManyToOne @JoinColumn(
-		name = "author_id",
-		foreignKey = ForeignKey(name = "author_id_fk"),
-	) var author: Author? = null,
+	@ManyToOne @JoinColumn(name = "author_id", foreignKey = ForeignKey(name = "author_id_fk"))
+	var author: Author? = null,
 
-	@ManyToOne @JoinColumn(
-		name = "category_id",
-		foreignKey = ForeignKey(name = "category_id_fk"),
-	) var category: Category? = null,
+	@ManyToOne @JoinColumn(name = "category_id", foreignKey = ForeignKey(name = "category_id_fk"))
+	var category: Category? = null,
 
-	@ManyToOne @JoinColumn(
-		name = "publisher_id", foreignKey = ForeignKey(name = "publisher_id_fk")
-	) var publisher: Publisher? = null,
+	@ManyToOne @JoinColumn(name = "publisher_id", foreignKey = ForeignKey(name = "publisher_id_fk"))
+	var publisher: Publisher? = null,
 
-	@Id @SequenceGenerator(
-		name = "book_generator",
-		sequenceName = "book_seq",
-		allocationSize = 1,
-	) @GeneratedValue(
-		strategy = GenerationType.SEQUENCE,
-		generator = "book_seq",
-	) var id: Long = 0,
+	@Id @SequenceGenerator(name = "book_seq_gen", sequenceName = "book_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
+	var id: Long = 0,
 )

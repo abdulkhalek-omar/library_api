@@ -21,12 +21,7 @@ import jakarta.persistence.UniqueConstraint
 class Category(
 	@Column(name = "category_name", nullable = false, length = 150) var categoryName: String? = null,
 
-	@Id @SequenceGenerator(
-		name = "category_generator",
-		sequenceName = "category_seq",
-		allocationSize = 1,
-	) @GeneratedValue(
-		strategy = GenerationType.SEQUENCE,
-		generator = "category_seq",
-	) var id: Long = 0,
+	@Id @SequenceGenerator(name = "category_seq_gen", sequenceName = "category_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "category_seq")
+	var id: Long = 0,
 )

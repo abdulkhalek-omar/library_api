@@ -33,25 +33,16 @@ class User(
 
 	@Column(nullable = false, length = 150) var lastName: String? = null,
 
-	@Enumerated(EnumType.STRING) @Column(
-		nullable = false,
-		length = 10,
-	) var userRole: UserRole? = null,
+	@Enumerated(EnumType.STRING) @Column(nullable = false, length = 10) var userRole: UserRole? = null,
 
 	@Column(nullable = false, length = 150) var email: String? = null,
 
 	@Column(length = 15) var phone: String? = null,
 
-	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(
-		name = "address_id", foreignKey = ForeignKey(name = "address_id_fk")
-	) var address: Address? = null,
+	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "address_id", foreignKey = ForeignKey(name = "address_id_fk"))
+	var address: Address? = null,
 
-	@Id @SequenceGenerator(
-		sequenceName = "user_generator",
-		name = "user_seq",
-		allocationSize = 1,
-	) @GeneratedValue(
-		strategy = GenerationType.SEQUENCE,
-		generator = "user_seq",
-	) var id: Long = 0,
+	@Id @SequenceGenerator(name = "user_seq_gen", sequenceName = "user_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+	var id: Long = 0,
 )
