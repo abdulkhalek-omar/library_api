@@ -10,7 +10,6 @@ import org.springframework.security.web.SecurityFilterChain
 @Configuration
 @EnableWebSecurity
 class ApplicationSecurityConfig {
-
 	@Bean
 	fun filterChain(http: HttpSecurity): SecurityFilterChain {
 		http
@@ -18,7 +17,7 @@ class ApplicationSecurityConfig {
 			.requestMatchers("/", "index", "/css/*", "/js/*")
 			.permitAll()
 			.and()
-			.formLogin()
+			.httpBasic()
 		return http.build()
 	}
 
