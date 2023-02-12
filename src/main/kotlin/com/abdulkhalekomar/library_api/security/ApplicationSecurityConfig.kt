@@ -15,12 +15,11 @@ class ApplicationSecurityConfig {
 	fun filterChain(http: HttpSecurity): SecurityFilterChain {
 		http
 			.authorizeHttpRequests()
-			.anyRequest()
-			.authenticated()
+			.requestMatchers("/", "index", "/css/*", "/js/*")
+			.permitAll()
 			.and()
-			.httpBasic()
+			.formLogin()
 		return http.build()
 	}
-
 
 }
