@@ -1,5 +1,6 @@
 package com.abdulkhalekomar.library_api.security
 
+import com.abdulkhalekomar.library_api.security.enums.ApplicationRole
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -38,12 +39,12 @@ class ApplicationSecurityConfig(
 		val user = User.builder()
 			.username("user")
 			.password(passwordEncoder.encode("password"))
-			.roles("USER") // ROLE_USER
+			.roles(ApplicationRole.USER.name) // ROLE_USER
 			.build()
 		val admin = User.builder()
 			.username("admin")
 			.password(passwordEncoder.encode("password"))
-			.roles("USER", "ADMIN")
+			.roles(ApplicationRole.ADMIN.name) // ROLE_ADMIN
 			.build()
 		return InMemoryUserDetailsManager(user, admin)
 	}
