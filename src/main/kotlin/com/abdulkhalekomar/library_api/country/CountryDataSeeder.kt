@@ -250,7 +250,7 @@ class CountryDataSeeder(private val countryRepository: ICountryRepository) : Com
 		val countriesFromDB = countryRepository.findAll().map { it.countryName }
 
 		countriesFromDB.forEach { countryDB ->
-			countries.removeIf { countryDB.equals(it.countryName!!) }
+			countries.removeIf { countryDB.equals(it.countryName) }
 		}
 
 		countryRepository.saveAll(countries)

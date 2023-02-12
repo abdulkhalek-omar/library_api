@@ -1,28 +1,28 @@
 ####################################### language #######################################
-INSERT INTO libraryDB.language (id, iso_639_1)
-VALUES (1, 'de');
-INSERT INTO libraryDB.language (id, iso_639_1)
-VALUES (2, 'ar');
+# INSERT INTO libraryDB.language (id, iso_639_1)
+# VALUES (1, 'de');
+# INSERT INTO libraryDB.language (id, iso_639_1)
+# VALUES (2, 'ar');
 ####################################### publisher #######################################
 INSERT INTO libraryDB.publisher (id, publisher_name)
 VALUES (1, 'Amazon');
 INSERT INTO libraryDB.publisher (id, publisher_name)
 VALUES (2, 'Springer Verlag');
 ####################################### country #######################################
-INSERT INTO libraryDB.country (id, country_name)
-VALUES (1, 'Afghanistan');
-INSERT INTO libraryDB.country (id, country_name)
-VALUES (2, 'Albanie');
-INSERT INTO libraryDB.country (id, country_name)
-VALUES (3, 'Allegri');
-INSERT INTO libraryDB.country (id, country_name)
-VALUES (5, 'Andorra');
-INSERT INTO libraryDB.country (id, country_name)
-VALUES (6, 'Angola');
-INSERT INTO libraryDB.country (id, country_name)
-VALUES (7, 'Germany');
-INSERT INTO libraryDB.country (id, country_name)
-VALUES (4, 'Samoa Americanises');
+# INSERT INTO libraryDB.country (id, country_name)
+# VALUES (1, 'Afghanistan');
+# INSERT INTO libraryDB.country (id, country_name)
+# VALUES (2, 'Albanie');
+# INSERT INTO libraryDB.country (id, country_name)
+# VALUES (3, 'Allegri');
+# INSERT INTO libraryDB.country (id, country_name)
+# VALUES (5, 'Andorra');
+# INSERT INTO libraryDB.country (id, country_name)
+# VALUES (6, 'Angola');
+# INSERT INTO libraryDB.country (id, country_name)
+# VALUES (7, 'Germany');
+# INSERT INTO libraryDB.country (id, country_name)
+# VALUES (4, 'Samoa Americanises');
 ####################################### category #######################################
 INSERT INTO libraryDB.category (id, category_name)
 VALUES (1, 'Krimis');
