@@ -25,8 +25,8 @@ class ApplicationSecurityConfig(
 	fun filterChain(http: HttpSecurity): SecurityFilterChain {
 		http
 			.authorizeHttpRequests()
-			.requestMatchers(HttpMethod.GET, "/index.html")
-			.permitAll()
+			.requestMatchers(HttpMethod.GET, "/index.html").permitAll()
+			.requestMatchers("/api/**").hasRole(ApplicationRole.USER.name)
 			.anyRequest()
 			.authenticated()
 			.and()
