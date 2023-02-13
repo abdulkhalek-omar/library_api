@@ -1,7 +1,14 @@
 package com.abdulkhalekomar.library_api.security.enums
 
+import org.springframework.security.core.authority.SimpleGrantedAuthority
+import java.util.stream.Collectors
+
 enum class ApplicationRole(private val permissions: Set<ApplicationPermission>) {
-	USER(setOf()),
+	USER(
+		setOf(
+
+		)
+	),
 	ADMIN(
 		setOf(
 			ApplicationPermission.COURSE_READ,
@@ -15,7 +22,14 @@ enum class ApplicationRole(private val permissions: Set<ApplicationPermission>) 
 			ApplicationPermission.COURSE_READ,
 			ApplicationPermission.USER_READ,
 		)
-	),
+	);
+
+	fun getGrantedAuthorities(): Set<SimpleGrantedAuthority> {
+		val permissions = permissions.stream().map { permission -> SimpleGrantedAuthority(permission.name) }.collect(Collectors.toSet())
+		permissions.add(SimpleGrantedAuthority("ROLE_${this.name}"))
+		return permissions
+	}
+
 
 }
 
