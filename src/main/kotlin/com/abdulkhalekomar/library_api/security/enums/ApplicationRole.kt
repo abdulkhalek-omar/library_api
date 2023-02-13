@@ -7,8 +7,15 @@ enum class ApplicationRole(private val permissions: Set<ApplicationPermission>) 
 			ApplicationPermission.COURSE_READ,
 			ApplicationPermission.COURSE_WRITE,
 			ApplicationPermission.USER_READ,
-			ApplicationPermission.USER_WRITE
+			ApplicationPermission.USER_WRITE,
 		)
-	)
+	),
+	ADMINTRAINEE(
+		setOf(
+			ApplicationPermission.COURSE_READ,
+			ApplicationPermission.USER_READ,
+		)
+	),
+
 }
 

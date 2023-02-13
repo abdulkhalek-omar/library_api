@@ -24,6 +24,7 @@ class ApplicationSecurityConfig(
 	@Bean
 	fun filterChain(http: HttpSecurity): SecurityFilterChain {
 		http
+			.csrf().disable() // TODO: Edit Following
 			.authorizeHttpRequests()
 			.requestMatchers(HttpMethod.GET, "/index.html").permitAll()
 			.requestMatchers("/api/**").hasRole(ApplicationRole.USER.name)
@@ -36,16 +37,22 @@ class ApplicationSecurityConfig(
 
 	@Bean
 	fun users(): UserDetailsService {
-		val user = User.builder()
-			.username("user")
-			.password(passwordEncoder.encode("password"))
-			.roles(ApplicationRole.USER.name) // ROLE_USER
-			.build()
 		val admin = User.builder()
 			.username("admin")
 			.password(passwordEncoder.encode("password"))
 			.roles(ApplicationRole.ADMIN.name) // ROLE_ADMIN
 			.build()
-		return InMemoryUserDetailsManager(user, admin)
+		val adminTrainee = User.builder()
+			.username("admin_trainee")
+			.password(passwordEncoder.encode("password"))
+			.roles(ApplicationRole.ADMINTRAINEE.name) // ROLE_ADMINTRAINEE
+			.build()
+		val user = User.builder()
+			.username("user")
+			.password(passwordEncoder.encode("password"))
+			.roles(ApplicationRole.USER.name) // ROLE_USER
+			.build()
+
+		return InMemoryUserDetailsManager(admin, adminTrainee, user)
 	}
 }
