@@ -1,7 +1,7 @@
 | Tool           | Version |
 |----------------|---------|
 | Kotlin         | 1.7.21  |
-| Spring boot    | 3.0.0   |
+| Spring boot    | 3.0.2   |
 | MariaDB Driver | 3.1.0   |
 | Postman        |         |
 | Docker         |         |
