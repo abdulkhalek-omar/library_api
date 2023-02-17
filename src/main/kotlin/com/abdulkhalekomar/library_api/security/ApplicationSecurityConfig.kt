@@ -1,6 +1,5 @@
 package com.abdulkhalekomar.library_api.security
 
-import com.abdulkhalekomar.library_api.security.enums.ApplicationPermission
 import com.abdulkhalekomar.library_api.security.enums.ApplicationRole
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
@@ -31,7 +30,7 @@ class ApplicationSecurityConfig(
 			.anyRequest()
 			.authenticated()
 			.and()
-			.httpBasic()
+			.formLogin()
 		return http.build()
 	}
 
