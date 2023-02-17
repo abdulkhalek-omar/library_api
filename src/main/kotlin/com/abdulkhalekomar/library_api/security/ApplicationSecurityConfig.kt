@@ -1,6 +1,5 @@
 package com.abdulkhalekomar.library_api.security
 
-import com.abdulkhalekomar.library_api.security.enums.ApplicationPermission
 import com.abdulkhalekomar.library_api.security.enums.ApplicationRole
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
@@ -9,6 +8,7 @@ import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -32,6 +32,20 @@ class ApplicationSecurityConfig(
 			.authenticated()
 			.and()
 			.httpBasic()
+			.and()
+			.sessionManagement {
+				// set url when session invalid (when session invalid app use this url for redirect to specific page)
+					session ->
+				session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+					.invalidSessionUrl("/logout?expired")
+					// set maximum session (only Single user can Log in into app in same time/concurrent)
+					.maximumSessions(1)
+					// second login will cause the first to be invalidated
+					.maxSessionsPreventsLogin(false)
+			}
+			.logout { logout ->
+				logout.deleteCookies("JSESSIONID").invalidateHttpSession(true) // this end point can access if user already login and access token valid with role "USER"
+			}
 		return http.build()
 	}
 
@@ -52,7 +66,6 @@ class ApplicationSecurityConfig(
 			.password(passwordEncoder.encode("password"))
 			.authorities(ApplicationRole.USER.getGrantedAuthorities())
 			.build()
-
 		return InMemoryUserDetailsManager(admin, adminTrainee, user)
 	}
 }
