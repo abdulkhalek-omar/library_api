@@ -1,6 +1,5 @@
 package com.abdulkhalekomar.library_api.security
 
-import com.abdulkhalekomar.library_api.security.enums.ApplicationPermission
 import com.abdulkhalekomar.library_api.security.enums.ApplicationRole
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
@@ -25,7 +24,7 @@ class ApplicationSecurityConfig(
 	@Bean
 	fun filterChain(http: HttpSecurity): SecurityFilterChain {
 		http
-			.csrf().disable() // TODO: Edit Following
+			.csrf().disable() // TODO: Must be activated
 			.authorizeHttpRequests()
 			.requestMatchers(HttpMethod.GET, "/index.html").permitAll()
 			.anyRequest()
