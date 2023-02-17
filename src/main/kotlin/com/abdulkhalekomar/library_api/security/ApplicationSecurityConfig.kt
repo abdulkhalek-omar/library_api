@@ -25,7 +25,7 @@ class ApplicationSecurityConfig(
 	@Bean
 	fun filterChain(http: HttpSecurity): SecurityFilterChain {
 		http
-			.csrf().disable() // TODO: Edit Following
+			.csrf().disable()
 			.authorizeHttpRequests()
 			.requestMatchers(HttpMethod.GET, "/index.html").permitAll()
 			.anyRequest()
