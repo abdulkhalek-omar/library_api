@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.provisioning.InMemoryUserDetailsManager
 import org.springframework.security.web.SecurityFilterChain
+import java.util.concurrent.TimeUnit
 
 
 @Configuration
@@ -34,7 +35,7 @@ class ApplicationSecurityConfig(
 			.loginPage("/login").permitAll()
 			.defaultSuccessUrl("/users", true)
 			.and()
-			.rememberMe() // defaults to 2 weeks
+			.rememberMe().tokenValiditySeconds(TimeUnit.DAYS.toSeconds(21).toInt()).key("somethingverysecured")
 		return http.build()
 	}
 
