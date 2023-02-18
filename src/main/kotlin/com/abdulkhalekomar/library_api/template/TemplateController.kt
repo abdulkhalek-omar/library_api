@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping
 @RequestMapping("/")
 class TemplateController {
 	@GetMapping("login")
-	fun getLoginView() = "Login"
+	fun getLoginView(): String = "login"
+
+	@GetMapping("users")
+	fun getUsersView(): String = "users"
 
 }

@@ -32,6 +32,7 @@ class ApplicationSecurityConfig(
 			.and()
 			.formLogin()
 			.loginPage("/login").permitAll()
+			.defaultSuccessUrl("/users", true)
 		return http.build()
 	}
 
