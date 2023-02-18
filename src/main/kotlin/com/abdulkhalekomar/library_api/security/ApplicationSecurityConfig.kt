@@ -33,6 +33,8 @@ class ApplicationSecurityConfig(
 			.formLogin()
 			.loginPage("/login").permitAll()
 			.defaultSuccessUrl("/users", true)
+			.and()
+			.rememberMe() // defaults to 2 weeks
 		return http.build()
 	}
 
