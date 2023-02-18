@@ -29,6 +29,8 @@ dependencies {
 
 	runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
 	implementation("org.hibernate:hibernate-validator:8.0.0.Final")
+
+	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 }
 
 tasks.withType<KotlinCompile> {
