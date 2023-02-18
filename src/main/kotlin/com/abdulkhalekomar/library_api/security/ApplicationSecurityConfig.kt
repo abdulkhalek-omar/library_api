@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.provisioning.InMemoryUserDetailsManager
 import org.springframework.security.web.SecurityFilterChain
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 import java.util.concurrent.TimeUnit
 
 
@@ -36,6 +37,14 @@ class ApplicationSecurityConfig(
 			.defaultSuccessUrl("/users", true)
 			.and()
 			.rememberMe().tokenValiditySeconds(TimeUnit.DAYS.toSeconds(21).toInt()).key("somethingverysecured")
+			.and()
+			.logout()
+			.logoutUrl("/logout")
+			.logoutRequestMatcher(AntPathRequestMatcher("/logout", "GET")) // Must be Post (when enable csrf)
+			.clearAuthentication(true)
+			.invalidateHttpSession(true)
+			.deleteCookies("JSESSIONID", "remember-me")
+			.logoutSuccessUrl("/login")
 		return http.build()
 	}
 
