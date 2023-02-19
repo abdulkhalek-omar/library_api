@@ -1,12 +1,12 @@
-package auth
+package com.abdulkhalekomar.library_api.auth
 
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
 class ApplicationUser(
-	private val grantedAuthority: MutableCollection<out GrantedAuthority>,
-	private val password: String,
 	private val username: String,
+	private val password: String,
+	private val grantedAuthority: MutableSet<out GrantedAuthority>,
 	private val isAccountNonExpired: Boolean,
 	private val isAccountNonLocked: Boolean,
 	private val isCredentialsNonExpired: Boolean,

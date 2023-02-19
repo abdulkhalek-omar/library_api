@@ -1,4 +1,4 @@
-package auth
+package com.abdulkhalekomar.library_api.auth
 
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
