@@ -25,7 +25,7 @@ enum class ApplicationRole(private val permissions: Set<ApplicationPermission>) 
 		)
 	);
 
-	fun getGrantedAuthorities(): Set<SimpleGrantedAuthority> {
+	fun getGrantedAuthorities(): MutableSet<SimpleGrantedAuthority> {
 		val permissions = permissions.stream().map { permission -> SimpleGrantedAuthority(permission.permission) }.collect(Collectors.toSet())
 		permissions.add(SimpleGrantedAuthority("ROLE_${this.name}"))
 		return permissions
