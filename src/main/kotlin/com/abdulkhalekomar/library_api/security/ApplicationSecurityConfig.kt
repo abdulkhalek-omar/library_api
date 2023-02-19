@@ -53,8 +53,8 @@ class ApplicationSecurityConfig(
 		return http.build()
 	}
 
-	@Autowired
-	fun configure(auth: AuthenticationManagerBuilder) {
+	@Bean
+	fun registerProvider(auth: AuthenticationManagerBuilder) {
 		auth.authenticationProvider(daoAuthenticationProvider())
 	}
 

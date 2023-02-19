@@ -26,7 +26,7 @@ class FakeApplicationUserDaoService(
 			ApplicationUser(
 				username = "admin_trainee",
 				password = passwordEncoder.encode("password"),
-				grantedAuthority = ApplicationRole.ADMIN.getGrantedAuthorities(),
+				grantedAuthority = ApplicationRole.ADMINTRAINEE.getGrantedAuthorities(),
 				isAccountNonExpired = true,
 				isAccountNonLocked = true,
 				isCredentialsNonExpired = true,
@@ -35,7 +35,7 @@ class FakeApplicationUserDaoService(
 			ApplicationUser(
 				username = "user",
 				password = passwordEncoder.encode("password"),
-				grantedAuthority = ApplicationRole.ADMIN.getGrantedAuthorities(),
+				grantedAuthority = ApplicationRole.USER.getGrantedAuthorities(),
 				isAccountNonExpired = true,
 				isAccountNonLocked = true,
 				isCredentialsNonExpired = true,
