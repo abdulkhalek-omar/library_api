@@ -1,17 +1,16 @@
 package com.abdulkhalekomar.library_api.security
 
-import com.abdulkhalekomar.library_api.security.enums.ApplicationRole
+import com.abdulkhalekomar.library_api.auth.ApplicationUserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
-import org.springframework.security.core.userdetails.User
-import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.password.PasswordEncoder
-import org.springframework.security.provisioning.InMemoryUserDetailsManager
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 import java.util.concurrent.TimeUnit
@@ -22,6 +21,7 @@ import java.util.concurrent.TimeUnit
 @EnableMethodSecurity(prePostEnabled = true)
 class ApplicationSecurityConfig(
 	@Autowired private val passwordEncoder: PasswordEncoder,
+	@Autowired private val applicationUserService: ApplicationUserService,
 ) {
 	@Bean
 	fun filterChain(http: HttpSecurity): SecurityFilterChain {
@@ -53,24 +53,16 @@ class ApplicationSecurityConfig(
 		return http.build()
 	}
 
-	@Bean
-	fun users(): UserDetailsService {
-		val admin = User.builder()
-			.username("admin")
-			.password(passwordEncoder.encode("password"))
-			.authorities(ApplicationRole.ADMIN.getGrantedAuthorities())
-			.build()
-		val adminTrainee = User.builder()
-			.username("admin_trainee")
-			.password(passwordEncoder.encode("password"))
-			.authorities(ApplicationRole.ADMINTRAINEE.getGrantedAuthorities())
-			.build()
-		val user = User.builder()
-			.username("user")
-			.password(passwordEncoder.encode("password"))
-			.authorities(ApplicationRole.USER.getGrantedAuthorities())
-			.build()
+	@Autowired
+	fun configure(auth: AuthenticationManagerBuilder) {
+		auth.authenticationProvider(daoAuthenticationProvider())
+	}
 
-		return InMemoryUserDetailsManager(admin, adminTrainee, user)
+	@Bean
+	fun daoAuthenticationProvider(): DaoAuthenticationProvider {
+		val daoAuthenticationProvider = DaoAuthenticationProvider()
+		daoAuthenticationProvider.setPasswordEncoder(passwordEncoder)
+		daoAuthenticationProvider.setUserDetailsService(applicationUserService)
+		return daoAuthenticationProvider
 	}
 }
