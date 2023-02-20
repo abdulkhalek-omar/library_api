@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -27,6 +26,7 @@ class ApplicationSecurityConfig(
 	fun filterChain(http: HttpSecurity): SecurityFilterChain {
 		http
 			.csrf().disable() // TODO: Edit Following
+			.authenticationProvider(daoAuthenticationProvider())
 			.authorizeHttpRequests()
 			.requestMatchers(HttpMethod.GET, "/index.html").permitAll()
 			.anyRequest()
@@ -51,11 +51,6 @@ class ApplicationSecurityConfig(
 			.deleteCookies("JSESSIONID", "remember-me")
 			.logoutSuccessUrl("/login")
 		return http.build()
-	}
-
-	@Bean
-	fun registerProvider(auth: AuthenticationManagerBuilder) {
-		auth.authenticationProvider(daoAuthenticationProvider())
 	}
 
 	@Bean

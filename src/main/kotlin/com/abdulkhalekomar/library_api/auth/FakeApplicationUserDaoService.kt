@@ -1,13 +1,15 @@
 package com.abdulkhalekomar.library_api.auth
 
 import com.abdulkhalekomar.library_api.security.enums.ApplicationRole
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Repository
-import java.util.*
+import java.util.Optional
+
 
 @Repository("fake")
 class FakeApplicationUserDaoService(
-	private val passwordEncoder: PasswordEncoder,
+	@Autowired private val passwordEncoder: PasswordEncoder,
 ) : ApplicationUserDao {
 	override fun selectApplicationUserByUsername(username: String): Optional<ApplicationUser> =
 		getApplicationUsers().stream().filter { applicationUsers -> username == applicationUsers.username }.findFirst()
@@ -44,4 +46,3 @@ class FakeApplicationUserDaoService(
 		)
 	}
 }
-

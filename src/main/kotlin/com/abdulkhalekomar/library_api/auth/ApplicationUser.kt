@@ -6,13 +6,13 @@ import org.springframework.security.core.userdetails.UserDetails
 class ApplicationUser(
 	private val username: String,
 	private val password: String,
-	private val grantedAuthority: MutableSet<out GrantedAuthority>,
+	private val grantedAuthority: Set<GrantedAuthority>,
 	private val isAccountNonExpired: Boolean,
 	private val isAccountNonLocked: Boolean,
 	private val isCredentialsNonExpired: Boolean,
 	private val isEnabled: Boolean,
 ) : UserDetails {
-	override fun getAuthorities(): MutableCollection<out GrantedAuthority> = grantedAuthority
+	override fun getAuthorities(): Collection<GrantedAuthority> = grantedAuthority
 	override fun getPassword(): String = password
 	override fun getUsername(): String = username
 	override fun isAccountNonExpired(): Boolean = isAccountNonExpired
