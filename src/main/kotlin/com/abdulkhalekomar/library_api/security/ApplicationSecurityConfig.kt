@@ -2,6 +2,7 @@ package com.abdulkhalekomar.library_api.security
 
 import com.abdulkhalekomar.library_api.auth.ApplicationUserService
 import com.abdulkhalekomar.library_api.jwt.JwtUsernameAndPasswordAuthenticationFilter
+import com.abdulkhalekomar.library_api.security.enums.ApplicationRole
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -23,7 +24,6 @@ import org.springframework.security.web.SecurityFilterChain
 class ApplicationSecurityConfig(
 	@Autowired private val passwordEncoder: PasswordEncoder,
 	@Autowired private val applicationUserService: ApplicationUserService,
-	@Autowired private val authenticationManager: AuthenticationManager,
 ) {
 	@Bean
 	fun filterChain(http: HttpSecurity): SecurityFilterChain {
@@ -31,10 +31,11 @@ class ApplicationSecurityConfig(
 			.csrf().disable()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
-			.addFilter(JwtUsernameAndPasswordAuthenticationFilter(authenticationManager))
 			.authenticationProvider(daoAuthenticationProvider())
+			.addFilter(JwtUsernameAndPasswordAuthenticationFilter())
 			.authorizeHttpRequests()
 			.requestMatchers(HttpMethod.GET, "/index.html").permitAll()
+			.requestMatchers(HttpMethod.GET, "/api/**").hasRole(ApplicationRole.USER.name)
 			.anyRequest()
 			.authenticated()
 		return http.build()
