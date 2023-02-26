@@ -29,6 +29,12 @@ dependencies {
 
 	runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
 	implementation("org.hibernate:hibernate-validator:8.0.0.Final")
+
+	implementation("org.apache.groovy:groovy:4.0.8")
+	testImplementation("org.spockframework:spock-core:2.3-groovy-4.0")
+	testImplementation("org.spockframework:spock-spring:2.3-groovy-4.0")
+	testImplementation("org.mockito:mockito-inline:5.1.1")
+	testImplementation("org.mockito:mockito-core:5.1.1")
 }
 
 tasks.withType<KotlinCompile> {
