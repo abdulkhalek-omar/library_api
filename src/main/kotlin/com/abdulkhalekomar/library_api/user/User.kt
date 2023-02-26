@@ -15,6 +15,8 @@ import jakarta.persistence.ManyToOne
 import jakarta.persistence.SequenceGenerator
 import jakarta.persistence.Table
 import jakarta.persistence.UniqueConstraint
+import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
 
 @Entity(name = "User")
 @Table(
@@ -37,6 +39,8 @@ class User(
 
 	@Column(nullable = false, length = 150) var email: String? = null,
 
+	private var password: String? = null,
+
 	@Column(length = 15) var phone: String? = null,
 
 	@ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "address_id", foreignKey = ForeignKey(name = "address_id_fk"))
@@ -45,4 +49,33 @@ class User(
 	@Id @SequenceGenerator(name = "user_seq_gen", sequenceName = "user_seq", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
 	var id: Long = 0,
-)
+
+	) : UserDetails {
+	override fun getAuthorities(): Set<SimpleGrantedAuthority> {
+		return setOf(SimpleGrantedAuthority(userRole!!.name))
+	}
+
+	override fun getPassword(): String {
+		return password!!
+	}
+
+	override fun getUsername(): String {
+		return email!!
+	}
+
+	override fun isAccountNonExpired(): Boolean {
+		return true
+	}
+
+	override fun isAccountNonLocked(): Boolean {
+		return true
+	}
+
+	override fun isCredentialsNonExpired(): Boolean {
+		return true
+	}
+
+	override fun isEnabled(): Boolean {
+		return true
+	}
+}
