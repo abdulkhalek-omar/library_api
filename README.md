@@ -14,3 +14,9 @@
 | Project Requirements | 
 |----------------------|
 | Java 17              |
+
+| Call the documentation in OpenAPI "develop-Mod" | 
+|-------------------------------------------------|
+| http://localhost:8080/api-docs                  |
+| http://localhost:8080/swagger-ui/index.html#/   |
+
