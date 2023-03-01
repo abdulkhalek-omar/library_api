@@ -19,5 +19,4 @@ class AuthenticationController(
 	fun authenticate(@RequestBody request: AuthenticationRequest): AuthenticationResponse {
 		return service.authenticate(request)
 	}
-
 }

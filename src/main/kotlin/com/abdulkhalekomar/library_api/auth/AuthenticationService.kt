@@ -4,13 +4,14 @@ import com.abdulkhalekomar.library_api.security.JwtService
 import com.abdulkhalekomar.library_api.user.IUserRepository
 import com.abdulkhalekomar.library_api.user.User
 import com.abdulkhalekomar.library_api.user.UserRole
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
-class AuthenticationService(
+class AuthenticationService @Autowired constructor(
 	private val repository: IUserRepository,
 	private val passwordEncoder: PasswordEncoder,
 	private val jwtService: JwtService,
@@ -20,6 +21,7 @@ class AuthenticationService(
 		val user = User(
 			firstName = request.firstName,
 			lastName = request.lastName,
+			phone = request.phone,
 			email = request.email,
 			password = passwordEncoder.encode(request.password),
 			userRole = UserRole.USER,
@@ -44,5 +46,4 @@ class AuthenticationService(
 			token = jwtToken
 		)
 	}
-
 }

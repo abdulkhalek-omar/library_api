@@ -3,6 +3,7 @@ package com.abdulkhalekomar.library_api.security
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.lang.NonNull
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
@@ -17,7 +18,7 @@ import org.springframework.web.filter.OncePerRequestFilter
  */
 
 @Component
-class JwtAuthenticationFilter(
+class JwtAuthenticationFilter @Autowired constructor(
 	private val jwtService: JwtService,
 	private val userDetailsService: UserDetailsService,
 ) : OncePerRequestFilter() {
